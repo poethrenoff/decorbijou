@@ -14,21 +14,7 @@ class metadata
                 'text_content' => array('title' => 'Текст', 'type' => 'text', 'editor' => 1, 'errors' => 'require'),
             ),
         ),
-        
-        /**
-         * Таблица "Новости"
-         */
-        'news' => array(
-            'title' => 'Новости',
-            'fields' => array(
-                'news_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
-                'news_title' => array('title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => 'require'),
-                'news_announce' => array('title' => 'Анонс', 'type' => 'text', 'editor' => 1, 'errors' => 'require'),
-                'news_content' => array('title' => 'Текст', 'type' => 'text', 'editor' => 1, 'errors' => 'require'),
-                'news_date' => array('title' => 'Дата публикации', 'type' => 'datetime', 'show' => 1, 'sort' => 'desc', 'errors' => 'require'),
-            ),
-        ),
-        
+
         /**
          * Таблица "Меню"
          */
@@ -43,6 +29,153 @@ class metadata
                 'menu_order' => array('title' => 'Порядок', 'type' => 'order', 'group' => array('menu_parent')),
                 'menu_active' => array('title' => 'Видимость', 'type' => 'active'),
             ),
+        ),
+        
+        /**
+         * Таблица "Баннеры"
+         */
+        'banner' => array(
+            'title' => 'Тизеры',
+            'fields' => array(
+                'banner_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'banner_title' => array('title' => 'Заголовок', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => 'require'),
+                'banner_image' => array('title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'banner', 'errors' => 'require'),
+                'banner_url' => array('title' => 'URL', 'type' => 'string', 'errors' => 'require' ),
+                'banner_order' => array('title' => 'Порядок', 'type' => 'order'),
+                'banner_active' => array('title' => 'Видимость', 'type' => 'active'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Каталог"
+         */
+        'catalogue' => array(
+            'title' => 'Каталог',
+            'fields' => array(
+                'catalogue_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'catalogue_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => 'require' ),
+                'catalogue_name' => array( 'title' => 'Ссылка', 'type' => 'string', 'errors' => 'require', 'no_add' => 1, 'group' => array() ),
+                'catalogue_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'catalogue', 'errors' => 'require' ),
+                'catalogue_order' => array( 'title' => 'Порядок', 'type' => 'order', 'group' => array() ),
+            ),
+            'links' => array(
+                'product' => array( 'table' => 'product', 'field' => 'product_catalogue' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Товары"
+         */
+        'product' => array(
+            'title' => 'Товары',
+            'fields' => array(
+                'product_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'product_catalogue' => array( 'title' => 'Каталог', 'type' => 'table', 'table' => 'catalogue', 'errors' => 'require' ),
+                'product_title' => array( 'title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
+                'product_description' => array( 'title' => 'Описание', 'type' => 'text', 'editor' => 1, 'errors' => 'require' ),
+                'product_price' => array( 'title' => 'Цена', 'type' => 'float', 'errors' => 'require' ),
+                'product_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'product', 'errors' => 'require' ),
+                'product_order' => array( 'title' => 'Порядок', 'type' => 'order', 'group' => array( 'product_catalogue' ) ),
+                'product_active' => array( 'title' => 'Видимость', 'type' => 'active' ),
+            ),
+            'relations' => array(
+                'tag' => array( 'secondary_table' => 'tag', 'relation_table' => 'product_tag',
+                    'primary_field' => 'product_id', 'secondary_field' => 'tag_id', 'title' => 'Теги' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Теги"
+         */
+        'tag' => array(
+            'title' => 'Теги',
+            'fields' => array(
+                'tag_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'tag_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Связь тегов с товарами"
+         */
+        'product_tag' => array(
+            'title' => 'Связь тегов с товарами',
+            'internal' => true,
+            'fields' => array(
+                'product_id' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
+                'tag_id' => array( 'title' => 'Тег', 'type' => 'table', 'table' => 'tag', 'errors' => 'require' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Пользователи"
+         */
+        'client' => array(
+            'title' => 'Пользователи',
+            'fields' => array(
+                'client_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'client_title' => array('title' => 'Контактное лицо', 'type' => 'string', 'main' => 1, 'errors' => 'require'),
+                'client_email' => array('title' => 'Email', 'type' => 'string', 'errors' => 'require|email'),
+                'client_password' => array('title' => 'Пароль', 'type' => 'password'),
+                'client_active' => array('title' => 'Активный', 'type' => 'active'),
+            ),
+            'links' => array(
+                'purchase' => array('table' => 'purchase', 'field' => 'purchase_client'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Заказы"
+         */
+        'purchase' => array(
+            'title' => 'Заказы',
+            'fields' => array(
+                'purchase_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'purchase_client' => array('title' => 'Пользователь', 'type' => 'table', 'table' => 'client', 'main' => 1, 'errors' => 'require'),
+                'purchase_phone' => array('title' => 'Телефон', 'type' => 'string', 'errors' => 'require'),
+                'purchase_address' => array('title' => 'Адрес', 'type' => 'text'),
+                'purchase_request' => array('title' => 'Дата и время доставки', 'type' => 'string'),
+                'purchase_comment' => array('title' => 'Комментарий', 'type' => 'text'),
+                'purchase_delivery' => array('title' => 'Способ доставки', 'type' => 'table', 'table' => 'delivery', 'errors' => 'require'),
+                'purchase_date' => array('title' => 'Дата заказа', 'type' => 'datetime', 'show' => 1, 'sort' => 'desc', 'errors' => 'require'),
+                'purchase_sum' => array('title' => 'Сумма заказа', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
+                'purchase_status' => array('title' => 'Статус заказа', 'type' => 'select', 'filter' => 1, 'values' => array(
+                        array('value' => '1', 'title' => 'Новый'),
+                        array('value' => '2', 'title' => 'Обработан'),
+                        array('value' => '3', 'title' => 'В доставке'),
+                        array('value' => '4', 'title' => 'Выполнен'),
+                        array('value' => '5', 'title' => 'Отменен')), 'show' => 1, 'errors' => 'require'),
+            ),
+            'links' => array(
+                'purchase_item' => array('table' => 'purchase_item', 'field' => 'item_purchase'),
+            )
+        ),
+        
+        /**
+         * Таблица "Позиции заказа"
+         */
+        'purchase_item' => array(
+            'title' => 'Позиции заказа',
+            'fields' => array(
+                'item_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'item_purchase' => array('title' => 'Заказ', 'type' => 'table', 'table' => 'purchase', 'show' => 1, 'errors' => 'require'),
+                'item_product' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product', 'main' => 1, 'errors' => 'require'),
+                'item_price' => array('title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
+            )
+        ),
+        
+        /**
+         * Таблица "Способы доставки"
+         */
+        'delivery' => array(
+            'title' => 'Способы доставки',
+            'fields' => array(
+                'delivery_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'delivery_title' => array( 'title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
+                'delivery_comment' => array( 'title' => 'Комментарий', 'type' => 'text', 'editor' => 1, 'errors' => 'require' ),
+                'delivery_price' => array('title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
+                'delivery_active' => array('title' => 'Активный', 'type' => 'active'),
+            )
         ),
         
         ////////////////////////////////////////////////////////////////////////////////////////
