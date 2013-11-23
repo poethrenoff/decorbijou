@@ -1,4 +1,0 @@
-decorbijou
-==========
-
-Сайт decorbijou.ru
