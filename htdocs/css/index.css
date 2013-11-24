@@ -17,3 +17,13 @@ table.main {
         vertical-align: top;
     }
 
+
+div.tag_cloud {
+    text-align: center;
+    padding: 0px 100px;
+}
+
+    div.tag_cloud a {
+        margin: 3px;
+        white-space: nowrap;
+    }

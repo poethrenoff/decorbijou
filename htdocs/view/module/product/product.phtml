@@ -1,0 +1,5 @@
+<? foreach ($this->product_list as $product_item) { ?>
+		<img src="<?= $product_item->get_product_image() . '/c/200/200' ?>"><br/>
+		<a href="<?= $product_item->get_product_url() ?>"><?= $product_item->get_product_title() ?></a><br/>
+		Цена: <?= $product_item->get_product_price() ?> р.<br/><br/>
+<? } ?>

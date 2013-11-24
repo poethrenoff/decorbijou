@@ -81,19 +81,6 @@ class upload
 		),
 	);
 	
-	public $translit = array(
-		'Ё' => 'YO', 'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E', 'Ж' => 'ZH',
-		'З' => 'Z', 'И' => 'I', 'Й' => 'Y', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N', 'О' => 'O', 'П' => 'P',
-		'Р' => 'R', 'С' => 'S', 'Т' => 'T', 'У' => 'U', 'Ф' => 'F', 'Х' => 'KH', 'Ц' => 'TS', 'Ч' => 'CH', 'Ш' => 'SH',
-		'Щ' => 'SHCH', 'Ъ' => '', 'Ы' => 'Y', 'Ь' => '', 'Э' => 'E', 'Ю' => 'U', 'Я' => 'YA',
-		
-		'ё' => 'yo', 'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ж' => 'zh',
-		'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p',
-		'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'kh', 'ц' => 'ts', 'ч' => 'ch', 'ш' => 'sh',
-		'щ' => 'shch', 'ъ' => '', 'ы' => 'y', 'ь' => '', 'э' => 'e', 'ю' => 'u', 'я' => 'ya',
-		
-		'№' => 'N', ' ' => '_' );
-	
 	/**
 	 * Constructor
 	 *
@@ -341,7 +328,7 @@ class upload
 		
 		if ($this->translit_name == TRUE)
 		{
-			$filename = $this -> translit_file_name( $filename );
+			$filename = to_translit( $filename );
 		}
 		
 		if ( ! file_exists($path.$filename))
@@ -703,20 +690,6 @@ class upload
 		$filename = str_replace($bad, '', $filename);
 
 		return stripslashes($filename);
-	}
-	
-	// --------------------------------------------------------------------
-	
-	/**
-	 * Translit the File Name
-	 *
-	 * @access	public
-	 * @param	string
-	 * @return	string
-	 */		
-	function translit_file_name( $filename )
-	{
-		return strtr( $filename, $this -> translit );
 	}
 	
 	// --------------------------------------------------------------------

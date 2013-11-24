@@ -1,0 +1,11 @@
+<table style="width: 100%;">
+	<tr>
+<? foreach ($this->catalogue_list as $catalogue_item) { ?>
+		<td style="text-align: center;">
+			<a href="<?= $catalogue_item->get_catalogue_url() ?>"<? if ($catalogue_item->get_catalogue_name() == $this->catalogue_name) { ?> style="font-weight: bold;"<? } ?>>
+				<img src="<?= $catalogue_item->get_catalogue_image() . '/c/150/150' ?>"><br/><?= $catalogue_item->get_catalogue_title() ?>
+			</a>
+		<td>
+<? } ?>
+	</tr>
+</table>

@@ -1,0 +1,17 @@
+	<h3><?= $this->get_product_title() ?></h3>
+	<div class="tag_cloud">
+<? 		$tag_list = $this->get_tag_list(); ?>
+<? 		foreach ($tag_list as $tag_item) { ?>
+			<a href="<?= $tag_item->get_tag_url() ?>"><?= $tag_item->get_tag_title() ?></a>
+<? 		} ?>
+	</div>
+	<a href="<?= $this->get_product_image() ?>">
+		<img src="<?= $this->get_product_image() . '/c/300/300' ?>"/>
+	</a><br>
+	Цена: <?= $this->get_product_price() ?> р.<br>
+	<div class="text">
+<?= $this->get_product_description() ?>
+	</div>
+	<div>
+		<a href="<?= $this->get_catalogue()->get_catalogue_url() ?>">Вернуться в раздел "<?= $this->get_catalogue()->get_catalogue_title() ?>"</a>
+	</div>

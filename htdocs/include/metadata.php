@@ -51,6 +51,7 @@ class metadata
          */
         'catalogue' => array(
             'title' => 'Каталог',
+            'class' => 'catalogue',
             'fields' => array(
                 'catalogue_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'catalogue_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => 'require' ),
@@ -68,10 +69,12 @@ class metadata
          */
         'product' => array(
             'title' => 'Товары',
+            'class' => 'product',
             'fields' => array(
                 'product_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'product_catalogue' => array( 'title' => 'Каталог', 'type' => 'table', 'table' => 'catalogue', 'errors' => 'require' ),
                 'product_title' => array( 'title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
+                'product_name' => array( 'title' => 'Ссылка', 'type' => 'string', 'errors' => 'require', 'no_add' => 1, 'group' => array('product_catalogue') ),
                 'product_description' => array( 'title' => 'Описание', 'type' => 'text', 'editor' => 1, 'errors' => 'require' ),
                 'product_price' => array( 'title' => 'Цена', 'type' => 'float', 'errors' => 'require' ),
                 'product_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'product', 'errors' => 'require' ),

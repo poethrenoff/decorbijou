@@ -1,0 +1,5 @@
+<div class="tag_cloud">
+<? foreach ($this->tag_list as $tag_item) { ?>
+	<a href="<?= $tag_item->get_tag_url() ?>" style="font-size: <?= $tag_item->get_font_size() ?>px"<? if ($tag_item->get_tag_title() == $this->tag_name) { ?> style="font-weight: bold;"<? } ?>><?= $tag_item->get_tag_title() ?></a>
+<? } ?>
+</div>
