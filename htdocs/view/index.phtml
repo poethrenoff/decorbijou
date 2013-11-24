@@ -5,29 +5,47 @@
 		<meta name="keywords" content="<?= $this->escape( $this -> meta_keywords ) ?>"/> 
 		<meta name="description" content="<?= $this->escape( $this -> meta_description ) ?>"/> 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
 	</head>
 	<body>
 		<table class="main" border="1">
 			<tr>
-				<td class="header" colspan="3">
-<?= block( 'block/header' ) ?> 
+				<td>
+					<a href="/">Логотип</a>
 				</td>
-			</tr>
-			<tr>
-				<td class="menu">
+				<td>
 <?= $this -> menu ?> 
 				</td>
-				<td class="content">
-<?= $this -> content ?> 
+				<td>
+<?= $this -> cart ?> 
 				</td>
-				<td class="news">
-<?= $this -> news ?> 
+				<td>
+<?= $this -> client ?> 
+				</td>
+				<td>
+<?= $this -> phone ?> 
 				</td>
 			</tr>
 			<tr>
-				<td class="footer" colspan="3">
-<?= block( 'block/footer' ) ?> 
+				<td colspan="5">
+<?= $this -> catalogue ?> 
+				</td>
+			</tr>
+			<tr>
+				<td colspan="5">
+<?= $this -> teaser ?> 
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+<?= $this -> tag ?> 
+				</td>
+				<td>
+<?= $this -> social ?> 
+				</td>
+				<td>
+<?= $this -> copyright ?> 
 				</td>
 			</tr>
 		</table>

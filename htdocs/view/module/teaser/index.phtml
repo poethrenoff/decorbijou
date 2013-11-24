@@ -1,0 +1,22 @@
+							<link type="text/css" rel="stylesheet" href="/css/slide.css" />
+							<script type="text/javascript" src="/js/slides.min.jquery.js"></script>
+							<script>
+								jQuery(function(){
+									jQuery('#slides').slides({
+										preload: true,
+										preloadImage: '/image/loading.gif',
+										play: 5000,
+										pause: 2500,
+										hoverPause: true
+									});
+								});
+							</script>
+							<div id="teaser">
+								<div id="slides">
+									<div class="slides_container">
+<? foreach ($this->teaser_list as $teaser_item) { ?>
+										<a href="<?= $teaser_item->get_teaser_url() ?>"><img src="<?= $teaser_item->get_teaser_image() ?>" width="1280" height="447" alt=""></a>
+<? } ?>
+									</div>
+								</div>
+							</div>

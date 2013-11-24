@@ -10,21 +10,36 @@
 	<body>
 		<table class="main" border="1">
 			<tr>
-				<td class="header" colspan="2">
-<?= block( 'block/header' ) ?> 
+				<td>
+					<a href="/">Логотип</a>
+				</td>
+				<td>
+<?= $this -> menu ?> 
+				</td>
+				<td>
+<?= $this -> cart ?> 
+				</td>
+				<td>
+<?= $this -> client ?> 
+				</td>
+				<td>
+<?= $this -> phone ?> 
 				</td>
 			</tr>
 			<tr>
-				<td class="menu">
-<?= $this -> menu ?> 
-				</td>
-				<td class="content">
+				<td colspan="5">
 <?= $this -> content ?> 
 				</td>
 			</tr>
 			<tr>
-				<td class="footer" colspan="2">
-<?= block( 'block/footer' ) ?> 
+				<td colspan="3">
+<?= $this -> tag ?> 
+				</td>
+				<td>
+<?= $this -> social ?> 
+				</td>
+				<td>
+<?= $this -> copyright ?> 
 				</td>
 			</tr>
 		</table>
