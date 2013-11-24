@@ -1,0 +1,57 @@
+							<div class="block first">
+								<h1><i></i>Корзина</h1>
+<? if ($this->get_quantity()) { ?>
+								<div class="b-order">
+									<form method="post" id="cart" action="<?= url_for(array('controller' => 'cart', 'action' => 'save')) ?>">
+										<table style="width: 100%" border="1">
+											<tr>
+												<td class="ac">
+													<b>Товар</b>
+												</td>
+												<td width="50" class="ac">
+													<b>Цена</b>
+												</td>
+												<td width="50" class="ac">
+													<b>Удалить</b>
+												</td>
+											</tr>
+<? 		foreach ($this->get() as $item) { ?>
+<? 			$product_item = model::factory('product')->get($item->id); ?>
+											<tr>
+												<td>
+													<?= $product_item->get_product_title() ?>
+												</td>
+												<td width="50" class="ar">
+													<?= $product_item->get_product_price() ?>
+												</td>
+												<td width="50" class="ac">
+													<a href="<?= url_for(array('controller' => 'cart', 'action' => 'delete', 'id' => $product_item->get_id())) ?>">
+														Удалить
+													</a>
+												</td>
+											</tr>
+<? 		} ?>
+											<tr>
+												<td class="ar">
+													&nbsp;
+												</td>
+												<td width="50" class="ar">
+													<strong><?= $this->get_sum() ?>
+												</td>
+												<td width="50" class="ar">
+													&nbsp;
+												</td>
+											</tr>
+										</table>
+									</form>
+									<a href="<?= url_for(array('controller' => 'order')) ?>">
+										Оформить заказ
+									</a>
+									<a href="<?= url_for(array('controller' => 'cart', 'action' => 'clear')) ?>" onclick="return confirm('Вы уверены, что хотите очистить корзину?')">
+										Очистить корзину
+									</a>
+								</div>
+<? } else { ?>
+								<p style="font-size: 16px;"><b>Ваша корзина пуста.</b></p>
+<? } ?>
+							</div>

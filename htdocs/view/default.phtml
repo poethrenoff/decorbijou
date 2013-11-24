@@ -1,13 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<!DOCTYPE html>
+<html>
 	<head>
 		<title><?= $this->escape( $this -> meta_title ) ?></title>
 		<meta name="keywords" content="<?= $this->escape( $this -> meta_keywords ) ?>"/> 
 		<meta name="description" content="<?= $this->escape( $this -> meta_description ) ?>"/> 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
 	</head>
 	<body>
+		<div id="animate"></div>
 		<table class="main" border="1">
 			<tr>
 				<td>
@@ -17,7 +19,9 @@
 <?= $this -> menu ?> 
 				</td>
 				<td>
+					<div id="cart">
 <?= $this -> cart ?> 
+					</div>
 				</td>
 				<td>
 <?= $this -> client ?> 
