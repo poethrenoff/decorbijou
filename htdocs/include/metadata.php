@@ -132,6 +132,7 @@ class metadata
          */
         'purchase' => array(
             'title' => 'Заказы',
+            'no_add' => true,
             'fields' => array(
                 'purchase_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'purchase_client' => array('title' => 'Пользователь', 'type' => 'table', 'table' => 'client', 'main' => 1, 'errors' => 'require'),
@@ -140,6 +141,7 @@ class metadata
                 'purchase_request' => array('title' => 'Дата и время доставки', 'type' => 'string'),
                 'purchase_comment' => array('title' => 'Комментарий', 'type' => 'text'),
                 'purchase_delivery' => array('title' => 'Способ доставки', 'type' => 'table', 'table' => 'delivery', 'errors' => 'require'),
+                'purchase_luxury_package' => array('title' => 'Элитная упаковка', 'type' => 'boolean'),
                 'purchase_date' => array('title' => 'Дата заказа', 'type' => 'datetime', 'show' => 1, 'sort' => 'desc', 'errors' => 'require'),
                 'purchase_sum' => array('title' => 'Сумма заказа', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
                 'purchase_status' => array('title' => 'Статус заказа', 'type' => 'select', 'filter' => 1, 'values' => array(
@@ -150,7 +152,7 @@ class metadata
                         array('value' => '5', 'title' => 'Отменен')), 'show' => 1, 'errors' => 'require'),
             ),
             'links' => array(
-                'purchase_item' => array('table' => 'purchase_item', 'field' => 'item_purchase'),
+                'purchase_item' => array('table' => 'purchase_item', 'field' => 'item_purchase', 'ondelete' => 'cascade'),
             )
         ),
         
@@ -159,6 +161,7 @@ class metadata
          */
         'purchase_item' => array(
             'title' => 'Позиции заказа',
+            'no_add' => true,
             'fields' => array(
                 'item_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'item_purchase' => array('title' => 'Заказ', 'type' => 'table', 'table' => 'purchase', 'show' => 1, 'errors' => 'require'),

@@ -1,4 +1,4 @@
 <a href="/cart">Заказ</a>
-<? if ($this->get_quantity()) { ?>
-	<?= $this->get_sum() ?> руб.
+<? if ($this->cart->get_quantity()) { ?>
+	<?= $this->cart->get_sum() ?> руб.
 <? } ?>
