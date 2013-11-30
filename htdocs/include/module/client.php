@@ -75,6 +75,21 @@ class module_client extends module
     {
         if (!self::is_auth()) {
             redirect_to(array('controller' => 'client'));
+        } elseif (id()) {
+            $this->client = self::get_info();
+            
+            try {
+                $purchase = model::factory('purchase')->get(id());
+            } catch (AlarmException $e) {
+                not_found();
+            }
+            
+            if ($purchase->get_purchase_client() != $this->client->get_id()) {
+                not_found();
+            }
+            
+            $this->view->assign('purchase', $purchase);
+            $this -> content = $this -> view -> fetch( 'module/client/purchase/item' );
         } else {
             $this->client = self::get_info();
             $this->view->assign('client', $this->client);
@@ -122,12 +137,12 @@ class module_client extends module
         if (!isset($error['client_email']) && !valid::factory('email')->check($client_email)) {
             $error['client_email'] = 'Поле заполнено некорректно';
         }
+        if (!isset($error['client_email']) && model::factory('client')->get_by_email($client_email)) {
+            $error['client_email'] = 'Пользователь с таким электронным адресом уже зарегистрирован';
+        }
         if (!isset($error['client_password']) && !isset($error['client_password_confirm']) &&
                 strcmp($client_password, $client_password_confirm)) {
             $error['client_password_confirm'] = 'Пароли не совпадают';
-        }
-        if (!isset($error['client_email']) && model::factory('client')->get_by_email($client_email)) {
-            $error['client_email'] = 'Пользователь с таким электронным адресом уже зарегистрирован';
         }
         
         if (count($error)) {
@@ -139,7 +154,6 @@ class module_client extends module
             ->set_client_title($client_title)
             ->set_client_email($client_email)
             ->set_client_password(md5($client_password))
-            ->set_client_active(1)
             ->save();
         
         $from_email = get_preference('from_email');
@@ -354,10 +368,6 @@ class module_client extends module
         
         if (!$client) {
             throw new Exception('Пользователь с таким email не зарегистрирован на сайте');
-        }
-        
-        if (!$client->get_client_active()) {
-            throw new Exception('Пользователь заблокирорван');
         }
         
         if (strcmp($client->get_client_password(), $client_password)) {

@@ -1,0 +1,4 @@
+<h3>Заказы</h3>
+<? foreach ($this->client->get_purchase_list() as $purchase) { ?>
+<a href="<?= url_for(array('id' => $purchase->get_id())) ?>">Заказ №<?= $purchase->get_id() ?></a> <?= $purchase->get_purchase_sum() ?>р. (<?= $purchase->get_purchase_status_title() ?>)<br/>
+<? } ?>

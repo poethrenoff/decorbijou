@@ -15,4 +15,12 @@ class model_client extends model
         }
         return $this->get($record['client_id'], $record);
     }
+    
+    // Возвращает список заказов
+    public function get_purchase_list()
+    {
+        return model::factory('purchase')->get_list(
+            array('purchase_client' => $this->get_id()), array('purchase_date' => 'desc')
+        );
+    }
 }

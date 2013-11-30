@@ -120,7 +120,6 @@ class metadata
                 'client_title' => array('title' => 'Контактное лицо', 'type' => 'string', 'main' => 1, 'errors' => 'require'),
                 'client_email' => array('title' => 'Email', 'type' => 'string', 'show' => 1,  'errors' => 'require|email'),
                 'client_password' => array('title' => 'Пароль', 'type' => 'password'),
-                'client_active' => array('title' => 'Активный', 'type' => 'active'),
             ),
             'links' => array(
                 'purchase' => array('table' => 'purchase', 'field' => 'purchase_client'),
@@ -141,15 +140,15 @@ class metadata
                 'purchase_request' => array('title' => 'Дата и время доставки', 'type' => 'string'),
                 'purchase_comment' => array('title' => 'Комментарий', 'type' => 'text'),
                 'purchase_delivery' => array('title' => 'Способ доставки', 'type' => 'table', 'table' => 'delivery', 'errors' => 'require'),
-                'purchase_luxury_package' => array('title' => 'Элитная упаковка', 'type' => 'boolean'),
+                'purchase_luxury' => array('title' => 'Элитная упаковка', 'type' => 'boolean'),
                 'purchase_date' => array('title' => 'Дата заказа', 'type' => 'datetime', 'show' => 1, 'sort' => 'desc', 'errors' => 'require'),
-                'purchase_sum' => array('title' => 'Сумма заказа', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
+                'purchase_sum' => array('title' => 'Сумма заказа', 'type' => 'float', 'show' => 1, 'errors' => 'require', 'no_edit' => 1),
                 'purchase_status' => array('title' => 'Статус заказа', 'type' => 'select', 'filter' => 1, 'values' => array(
                         array('value' => '1', 'title' => 'Новый'),
                         array('value' => '2', 'title' => 'Обработан'),
                         array('value' => '3', 'title' => 'В доставке'),
                         array('value' => '4', 'title' => 'Выполнен'),
-                        array('value' => '5', 'title' => 'Отменен')), 'show' => 1, 'errors' => 'require'),
+                        array('value' => '5', 'title' => 'Отменен')), 'show' => 1, 'errors' => 'require', 'no_edit' => 1),
             ),
             'links' => array(
                 'purchase_item' => array('table' => 'purchase_item', 'field' => 'item_purchase', 'ondelete' => 'cascade'),
@@ -161,12 +160,12 @@ class metadata
          */
         'purchase_item' => array(
             'title' => 'Позиции заказа',
-            'no_add' => true,
+            'model' => 'purchaseItem',
+            'no_add' => true, 'no_edit' => true,
             'fields' => array(
                 'item_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
-                'item_purchase' => array('title' => 'Заказ', 'type' => 'table', 'table' => 'purchase', 'show' => 1, 'errors' => 'require'),
+                'item_purchase' => array('title' => 'Заказ', 'type' => 'table', 'table' => 'purchase', 'errors' => 'require'),
                 'item_product' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product', 'main' => 1, 'errors' => 'require'),
-                'item_price' => array('title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
             )
         ),
         

@@ -1,0 +1,141 @@
+								<h3>Оформление заказа</h3>
+<? if ($this->cart->get_quantity()) { ?>
+								<script type="text/javascript">
+									var cart_sum = '<?= $this->cart->get_sum() ?>';
+									var luxury_sum = '<?= get_preference('luxury_price') ?>';
+									
+									$(function(){
+										var $delivery = $('input[name="purchase_delivery"]');
+										var $luxury = $('input[name="purchase_luxury"]'); 
+										var $cart_sum = $('#cart_sum'); 
+										var $purchase_sum = $('#purchase_sum');
+										var $luxury_sum = $('#luxury_sum');
+										
+										function set_purchase_sum() {
+											var $delivery_checked = $('input[name="delivery"]:checked');
+											var purchase_sum = parseInt(cart_sum) +
+												($luxury.prop("checked") ? parseInt(luxury_sum) : 0) +
+												($delivery_checked.prop("checked") ? parseInt($delivery_checked.attr('price')) : 0);
+											$cart_sum.html(cart_sum);
+											$purchase_sum.html(parseInt(purchase_sum));
+											$luxury_sum.html(parseInt(luxury_sum));
+										}
+										
+										$luxury.change(set_purchase_sum);
+										$delivery.change(set_purchase_sum);
+										set_purchase_sum();
+									});
+								</script>
+								<div class="b-purchase">
+									<table class="items">
+										<tr>
+											<td class="ac">
+												<b>Товар</b>
+											</td>
+											<td width="50" class="ac">
+												<b>Цена</b>
+											</td>
+										</tr>
+<? 		foreach ($this->cart->get() as $item) { ?>
+<? 			$product_item = model::factory('product')->get($item->id); ?>
+										<tr>
+											<td>
+												<?= $product_item->get_product_title() ?>
+											</td>
+											<td width="50" class="ar">
+												<?= $product_item->get_product_price() ?>
+											</td>
+										</tr>
+<? 		} ?>
+										<tr>
+											<td class="ar">
+												<strong>Стоимость товаров:</strong>
+											</td>
+											<td width="50" class="ar">
+												<strong id="cart_sum"></strong>
+											</td>
+										</tr>
+									</table>
+									<div class="form">
+										<form action="<?= self_url() ?>" method="post">
+											<div class="field">
+												Элитная упаковка (<span id="luxury_sum"></span>):
+												<input type="checkbox" value="on" name="purchase_luxury"<? if ($this->in_request('purchase_luxury')) { ?> checked="checked"<? } ?> />
+											</div>
+											<br/>
+											<div class="field">
+												Способ доставки: <br/>
+<? foreach ($this->delivery_list as $delivery) { ?>
+												<?= $delivery->get_delivery_title() ?> (<?= $delivery->get_delivery_price() ?>) <input type="radio" value="<?= $delivery->get_id() ?>" name="purchase_delivery" price="<?= $delivery->get_delivery_price() ?>"<? if ($this->in_request('purchase_delivery', $delivery->get_id())) { ?> checked="checked"<? } ?>/><br/>
+<? } ?>
+<? 		if ($this->error['purchase_delivery']) { ?>
+									<span class="error"><?= $this->error['purchase_delivery'] ?></span>
+<? 		} ?>
+											</div>
+											<br/>
+											
+											<div class="field">
+												Итоговая стоимость заказа:
+												<b id="purchase_sum"></b>
+											</div>
+											<br/>
+											
+<? if (!$this->client) { ?>
+											<div class="field">
+												Ваше имя <span class="require">*</span>:
+												<br />
+												<input type="text" value="<?= $this->escape($this->from_request('client_title')) ?>" name="client_title" />
+<? 		if ($this->error['client_title']) { ?>
+									<span class="error"><?= $this->error['client_title'] ?></span>
+<? 		} ?>
+											</div>
+											<div class="field">
+												Ваш e-mail <span class="require">*</span>:
+												<br />
+												<input type="text" value="<?= $this->escape($this->from_request('client_email')) ?>" name="client_email" />
+<? 		if ($this->error['client_email']) { ?>
+									<span class="error"><?= $this->error['client_email'] ?></span>
+<? 		} ?>
+											</div>
+<? } else {
+		if ($purchase_list = $this->client->get_purchase_list()) {
+			$last_purchase = current($purchase_list);
+			$last_purchase_phone = $last_purchase->get_purchase_phone();
+			$last_purchase_address = $last_purchase->get_purchase_address();
+		}
+} ?>
+											<div class="field">
+												Ваш телефон <span class="require">*</span>:
+												<br />
+												<input type="text" value="<?= $this->escape($this->from_request('purchase_phone', $last_purchase_phone)) ?>" name="purchase_phone" />
+<? if ($this->error['purchase_phone']) { ?>
+									<span class="error"><?= $this->error['purchase_phone'] ?></span>
+<? } ?>
+											</div>
+											<div class="field">
+												Адрес доставки <span class="require">*</span>:
+												<br />
+												<textarea name="purchase_address" class="purchase input"><?= $this->escape($this->from_request('purchase_address', $last_purchase_address)) ?></textarea>
+<? if ($this->error['purchase_address']) { ?>
+									<span class="error"><?= $this->error['purchase_address'] ?></span>
+<? } ?>
+											</div>
+											<div class="field">
+												Дата и время доставки:
+												<br />
+												<input type="text" value="<?= $this->escape($this->from_request('purchase_request')) ?>" name="purchase_request"/>
+											</div>
+											<div class="field">
+												Комментарий:
+												<br />
+												<textarea name="purchase_comment" class="purchase input"><?= $this->escape($this->from_request('purchase_comment')) ?></textarea>
+											</div>
+											<div class="field">
+												<input type="submit" value="Заказать" />
+											</div>
+										</form>
+									</div>
+								</div>
+<? } else { ?>
+								<p style="font-size: 16px;"><b>Ваша корзина пуста.</b></p>
+<? } ?>
