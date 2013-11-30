@@ -1,0 +1,24 @@
+<h3>Авторизация</h3>
+<form action="<?= self_url() ?>" method="post">
+	<p>
+		E-mail
+		<input type="text" name="client_email" value="<?= $this->escape($this->from_request('client_email')) ?>" />
+<? if ($this->error['client_email']) { ?>
+		<span class="error"><?= $this->error['client_email'] ?></span>
+<? } ?>
+	</p>
+	<p>
+		Пароль
+		<input type="password" name="client_password" value="" />
+<? if ($this->error['client_password']) { ?>
+		<span class="error"><?= $this->error['client_password'] ?></span>
+<? } ?>
+	</p>
+	<p>
+		Запомнить меня
+		<input type="checkbox" name="client_remember" value="on"<? if ($this->in_request('client_remember')) { ?> checked="checked"<? } ?>/>
+	</p>
+	<input type="submit" value="Войти" />
+</form>
+<a href="<?= url_for(array('controller' => 'client/registration')) ?>">Регистрация</a>
+<a href="<?= url_for(array('controller' => 'client/recovery')) ?>">Забыли пароль?</a>

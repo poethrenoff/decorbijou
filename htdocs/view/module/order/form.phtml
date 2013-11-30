@@ -57,7 +57,7 @@
 										</tr>
 									</table>
 									<div class="form">
-										<form id="sendmessage" method="post">
+										<form action="<?= self_url() ?>" method="post">
 											<div class="field">
 												Элитная упаковка (<span id="luxury_package_sum"></span>):
 												<input type="checkbox" value="on" name="luxury_package"<? if ($this->in_request('luxury_package')) { ?> checked="checked"<? } ?> />

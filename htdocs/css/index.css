@@ -31,3 +31,7 @@ div.tag_cloud {
 #animate {
     position: absolute;
 }
+
+.error {
+    color: red;
+}

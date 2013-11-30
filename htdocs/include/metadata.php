@@ -118,7 +118,7 @@ class metadata
             'fields' => array(
                 'client_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'client_title' => array('title' => 'Контактное лицо', 'type' => 'string', 'main' => 1, 'errors' => 'require'),
-                'client_email' => array('title' => 'Email', 'type' => 'string', 'errors' => 'require|email'),
+                'client_email' => array('title' => 'Email', 'type' => 'string', 'show' => 1,  'errors' => 'require|email'),
                 'client_password' => array('title' => 'Пароль', 'type' => 'password'),
                 'client_active' => array('title' => 'Активный', 'type' => 'active'),
             ),

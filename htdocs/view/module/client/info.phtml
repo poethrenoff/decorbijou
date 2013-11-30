@@ -1,0 +1,11 @@
+<? if ($this->client) { ?>
+<p>
+	Вы вошли как <a href="<?= url_for(array('controller' => 'client')) ?>"><?= $this->escape($this->client->get_client_title()) ?></a>
+	<a href="<?= url_for(array('controller' => 'client', 'action' => 'logout')) ?>">Выйти</a>
+</p>
+<? } else { ?>
+<p>
+	<a href="<?= url_for(array('controller' => 'client')) ?>">Войти</a>
+	<a href="<?= url_for(array('controller' => 'client/registration')) ?>">Зарегистрироваться</a>
+</p>
+<? } ?>

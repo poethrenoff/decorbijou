@@ -3,9 +3,9 @@ class module_order extends module
 {
     protected function action_index()
     {
-		$delivery_list = model::factory('delivery')->get_list(array('delivery_active' => 1), array('delivery_price' => 'asc'));
-		$this->view->assign('delivery_list', $delivery_list);
-		
+        $delivery_list = model::factory('delivery')->get_list(array('delivery_active' => 1), array('delivery_price' => 'asc'));
+        $this->view->assign('delivery_list', $delivery_list);
+        
         $cart = cart::factory();
         
         if (!empty($_POST) && $cart->get_quantity()) {

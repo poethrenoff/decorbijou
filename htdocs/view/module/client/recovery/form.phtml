@@ -1,0 +1,13 @@
+<h3>Восстановление пароля</h3>
+<form action="<?= self_url() ?>" method="post">
+	<p>
+		E-mail
+		<input type="text" name="client_email" value="<?= $this->escape($this->from_request('client_email')) ?>" />
+<? if ($this->error['client_email']) { ?>
+		<span class="error"><?= $this->error['client_email'] ?></span>
+<? } ?>
+	</p>
+	<input type="submit" value="Отправить" />
+</form>
+<a href="<?= url_for(array('controller' => 'client')) ?>">Войти</a>
+<a href="<?= url_for(array('controller' => 'client/registration')) ?>">Регистрация</a>

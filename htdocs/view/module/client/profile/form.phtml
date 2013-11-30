@@ -1,0 +1,39 @@
+<h3>Личные данные</h3>
+<form action="<?= self_url() ?>" method="post">
+	<p>
+		Имя
+		<input type="text" name="client_title" value="<?= $this->escape($this->from_request('client_title', $this->client->get_client_title())) ?>" />
+<? if ($this->error['client_title']) { ?>
+		<span class="error"><?= $this->error['client_title'] ?></span>
+<? } ?>
+	</p>
+	<p>
+		E-mail
+		<input type="text" name="client_email" value="<?= $this->escape($this->from_request('client_email', $this->client->get_client_email())) ?>" />
+<? if ($this->error['client_email']) { ?>
+		<span class="error"><?= $this->error['client_email'] ?></span>
+<? } ?>
+	</p>
+	<p>
+		Старый пароль
+		<input type="password" name="client_password_old" value="" />
+<? if ($this->error['client_password_old']) { ?>
+		<span class="error"><?= $this->error['client_password_old'] ?></span>
+<? } ?>
+	</p>
+	<p>
+		Новый пароль
+		<input type="password" name="client_password" value="" />
+<? if ($this->error['client_password']) { ?>
+		<span class="error"><?= $this->error['client_password'] ?></span>
+<? } ?>
+	</p>
+	<p>
+		Подтверждение
+			<input type="password" name="client_password_confirm" value="" />
+<? if ($this->error['client_password_confirm']) { ?>
+		<span class="error"><?= $this->error['client_password_confirm'] ?></span>
+<? } ?>
+	</p>
+	<input type="submit" value="Сохранить" />
+</form>
