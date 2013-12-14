@@ -12,6 +12,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removePlugins = 'save';
 	config.filebrowserUploadUrl = '/admin/fm/upload_file';
 	config.disableNativeSpellChecker = false;
+	config.allowedContent = true; // disable ACF
 	
 	config.toolbarGroups = [
 		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },

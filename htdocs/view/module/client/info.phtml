@@ -1,11 +1,15 @@
 <? if ($this->client) { ?>
-<p>
-	Вы вошли как <a href="<?= url_for(array('controller' => 'client')) ?>"><?= $this->escape($this->client->get_client_title()) ?></a>
-	<a href="<?= url_for(array('controller' => 'client', 'action' => 'logout')) ?>">Выйти</a>
-</p>
+						<div class="float-right top-left">
+							<span>Вы вошли как 
+								<a class="profile-link" href="<?= url_for(array('controller' => 'client')) ?>"><?= $this->escape($this->client->get_client_title()) ?></a>
+								<a class="logout" href="<?= url_for(array('controller' => 'client', 'action' => 'logout')) ?>">Выход</a>
+							</span>
+						</div>
 <? } else { ?>
-<p>
-	<a href="<?= url_for(array('controller' => 'client')) ?>">Войти</a>
-	<a href="<?= url_for(array('controller' => 'client/registration')) ?>">Зарегистрироваться</a>
-</p>
+						<div class="float-right top-left">
+							<span>
+								<a class="profile-link"  href="<?= url_for(array('controller' => 'client')) ?>">Войти</a>
+								<a class="logout" href="<?= url_for(array('controller' => 'client/registration')) ?>">Зарегистрироваться</a>
+							</span>
+						</div>
 <? } ?>

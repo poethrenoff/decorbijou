@@ -1,6 +1,8 @@
 <?php
 class module_product extends module
 {
+    const ITEM_PER_PAGE = 12;
+    
     protected function action_index()
     {
         $product_list = array();
@@ -24,8 +26,12 @@ class module_product extends module
             redirect_back();
         }
         
+        $pages = paginator::construct(count($product_list), array('by_page' => self::ITEM_PER_PAGE));
+        $product_list = array_slice($product_list, $pages['offset'], self::ITEM_PER_PAGE);
+        
         $this->view->assign('product_list', $product_list);
-        $this->content = $this->view->fetch('module/product/product');
+        $this->view->assign('pages', paginator::fetch($pages));
+        $this->content = $this->view->fetch('module/product/list');
     }
     
     protected function action_item()
@@ -41,6 +47,7 @@ class module_product extends module
         }
         
         $this->view->assign($product);
+        $this->view->assign('cart', cart::factory());
         $this->content = $this->view->fetch('module/product/item');
     }
     

@@ -75,21 +75,6 @@ class module_client extends module
     {
         if (!self::is_auth()) {
             redirect_to(array('controller' => 'client'));
-        } elseif (id()) {
-            $this->client = self::get_info();
-            
-            try {
-                $purchase = model::factory('purchase')->get(id());
-            } catch (AlarmException $e) {
-                not_found();
-            }
-            
-            if ($purchase->get_purchase_client() != $this->client->get_id()) {
-                not_found();
-            }
-            
-            $this->view->assign('purchase', $purchase);
-            $this -> content = $this -> view -> fetch( 'module/client/purchase/item' );
         } else {
             $this->client = self::get_info();
             $this->view->assign('client', $this->client);

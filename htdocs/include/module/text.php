@@ -3,14 +3,17 @@ class module_text extends module
 {
     protected function action_index()
     {
+        $text_id = $this->get_param('id');
+        $text_template = $this->get_param('template');
+        
         try {
-            $item = model::factory('text')->get($this->get_param('id'));
+            $text_item = model::factory('text')->get($this->get_param('id'));
         } catch (AlarmException $e) {
             not_found();
         }
         
-        $this->view->assign($item);
-        $this->content = $this->view->fetch('module/text/item');
+        $this->view->assign($text_item);
+        $this->content = $this->view->fetch('module/text/' . $text_template);
     }
     
     // Получение текста по тегу

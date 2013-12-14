@@ -1,11 +1,12 @@
-<table style="width: 100%;">
-	<tr>
+			<div class="menu">
 <? foreach ($this->catalogue_list as $catalogue_item) { ?>
-		<td style="text-align: center;">
-			<a href="<?= $catalogue_item->get_catalogue_url() ?>"<? if ($catalogue_item->get_catalogue_name() == $this->catalogue_name) { ?> style="font-weight: bold;"<? } ?>>
-				<img src="<?= $catalogue_item->get_catalogue_image() . '/c/150/150' ?>"><br/><?= $catalogue_item->get_catalogue_title() ?>
-			</a>
-		<td>
+				<div class="cat-cont">
+					<a class="cat-link<? if ($catalogue_item->get_catalogue_name() == $this->catalogue_name) { ?> cat-link-active<? } ?>" href="<?= $catalogue_item->get_catalogue_url() ?>">
+						<div class="cat-img">
+							<img src="<?= $catalogue_item->get_catalogue_image() . '/c/230/250' ?>"/>
+						</div>
+						<div class="cat-text"><?= $catalogue_item->get_catalogue_title() ?></div>
+					</a>
+				</div>
 <? } ?>
-	</tr>
-</table>
+			</div>

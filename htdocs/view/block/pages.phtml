@@ -1,19 +1,22 @@
 <? if( $this -> count > $this -> by_page ) { ?>
+					<div class="pager-cont float-right">
+						<span>Страницы</span>
 <? 		if( $this -> prev_page ) { ?>
-<a href="<?= $this->escape( $this -> prev_page['link'] ) ?>">&lt;</a>
-<? 		} else { ?>
-<b>&lt;</b>
+						<a class="pager-href pager-arrow-first" href="<?= $this->escape( $this -> prev_page['link'] ) ?>"></a>
 <? 		} ?>
 <? 		foreach( $this -> pages as $page ) { ?>
 <? 			if( $page['link'] ) { ?>
-<a href="<?= $this->escape( $page['link'] ) ?>"><? if ( $page['number'] ) { ?><?= $page['number'] ?><? } else { ?>&hellip;<? } ?></a>
+<? 				if( $page['number'] ) { ?>
+						<a class="pager-href" href="<?= $this->escape( $page['link'] ) ?>"><?= $page['number'] ?></a>
+<? 				} else { ?>
+						<span> ... </span>
+<? 				} ?>
 <? 			} else { ?>
-<b><?= $page['number'] ?></b>
+						<span class="pager-href pager-href-active"><?= $page['number'] ?></span>
 <? 			} ?>
 <?		} ?>
 <? 		if( $this -> next_page ) { ?>
-<a href="<?= $this->escape( $this -> next_page['link'] ) ?>">&gt;</a>
-<? 		} else { ?>
-<b>&gt;</b>
+						<a class="pager-href pager-arrow-second" href="<?= $this->escape( $this -> next_page['link'] ) ?>"></a>
 <? 		} ?>
+					</div>
 <? } ?>

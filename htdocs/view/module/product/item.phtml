@@ -1,48 +1,47 @@
-	<script type="text/javascript" >
-		function buyItem(id){
-			$.get('/cart/add/' + id + '/',function (response){
-				var b = $("#cart");
-				var i = $(".product img");
-				
-				i
-				.clone()
-				.css({
-					'position' : 'absolute',
-					'z-index' : '100',
-					'top':i.offset().top,
-					'left':i.offset().left,
-					'width':i.width(),
-					'height':i.height(),
-				}) 
-				.appendTo("#animate") 
-				.animate({
-					opacity: 0.5,
-					top: b.offset().top,
-					left: b.offset().left,
-					width: 50,
-					height: 50
-				}, 700, function() {
-					$(this).remove();
-					b.html(response);
+			<script type="text/javascript" src="js/jquery.elevateZoom-3.0.8.min.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#zoom").elevateZoom();
 				});
-			});
-		}
-	</script>
-	<h3><?= $this->get_product_title() ?></h3>
-	<div class="tag_cloud">
-<? 		$tag_list = $this->get_tag_list(); ?>
+				function buyItem(id){
+					$.get('/cart/add/' + id + '/',function (response){
+						$('#cart').html(response);
+						$('.buy-btn').text('в корзине');
+					});
+				}
+			</script>
+			<div class="card">
+				<div class="card-inner">
+					<div class="card-left float-left">
+						<div class="card-photo-cont">
+							<img id="zoom" src="<?= $this->get_product_image() . '/c/310/280' ?>" data-zoom-image="<?= $this->get_product_image() ?>"/>
+						</div>
+						<div class="social float-right">
+							<div class="clear social-header">Поделиться
+							</div>
+							<a class="social-one float-left fb" href=""></a>
+							<a class="social-one float-left tw" href=""></a>
+							<a class="social-one float-left vk" href=""></a>
+							<a class="social-one float-left ok" href=""></a>
+						</div>
+					</div>
+					<div class="card-right float-right">
+						<h1><?= $this->get_product_title() ?></h1>
+						<span class="card-price"><?= $this->get_product_price() ?> руб</span>
+						<button class="buy-btn" onclick="buyItem(<?= $this->get_id() ?>);"><? if ($this->cart->in_cart($this->get_id())) { ?>в корзине<? } else { ?>купить<? } ?></button>
+						<br/>
+<? if ($tag_list = $this->get_tag_list()) { ?>
+						<p class="card-categories">
+<? 		$tag_index = 0; $tag_count = count($tag_list); ?>
 <? 		foreach ($tag_list as $tag_item) { ?>
-			<a href="<?= $tag_item->get_tag_url() ?>"><?= $tag_item->get_tag_title() ?></a>
+							<a class="card-cat-link" href="<?= $tag_item->get_tag_url() ?>"><?= $tag_item->get_tag_title() ?></a><? if (++$tag_index < $tag_count - 1) { ?>, <? } ?>
 <? 		} ?>
-	</div>
-	<a href="<?= $this->get_product_image() ?>" class="product">
-		<img src="<?= $this->get_product_image() . '/c/300/300' ?>"/>
-	</a><br>
-	Цена: <?= $this->get_product_price() ?> р.<br>
-	<a href="#" onclick="buyItem(<?= $this->get_id() ?>); return false;">В корзину</a><br>
-	<div class="text">
+						</p>
+<? } ?>
+						<p class="card-descr">
 <?= $this->get_product_description() ?>
-	</div>
-	<div>
-		<a href="<?= $this->get_catalogue()->get_catalogue_url() ?>">Вернуться в раздел "<?= $this->get_catalogue()->get_catalogue_title() ?>"</a>
-	</div>
+						</p>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>

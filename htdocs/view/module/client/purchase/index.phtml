@@ -1,4 +1,47 @@
-<h3>Заказы</h3>
+			<div class="cabinet">
+				<div class="cabinet-left float-left">
+					<ul class="cabinet-menu">
+						<li class="cabinet-menu-link"><a href="<?= url_for(array('controller' => 'client/purchase')) ?>">Ваши заказы</a></li>
+						<li class="cabinet-menu-link"><a href="<?= url_for(array('controller' => 'client/profile')) ?>">Регистрационная информация</a></li>
+					</ul>
+				</div>
+				<div class="cabinet-right float-left">
+					<div class="orders-list">
+						<h1>Добро пожаловать, <?= $this->client->get_client_title() ?>!</h1>
+						<div class="table-cont">
+							<table class="orders-table">
+								<tr>
+									<th class="table-header" colspan='4'>Список Ваших заказов</th>
+								</tr>
+								<tr>
+									<th class="table-header">
+										Дата
+									</th>
+									<th class="table-header"></th>
+									<th class="table-header">
+										Цена
+									</th>
+									<th class="table-header">
+										Статус
+									</th>
+								</tr>
 <? foreach ($this->client->get_purchase_list() as $purchase) { ?>
-<a href="<?= url_for(array('id' => $purchase->get_id())) ?>">Заказ №<?= $purchase->get_id() ?></a> <?= $purchase->get_purchase_sum() ?>р. (<?= $purchase->get_purchase_status_title() ?>)<br/>
+								<tr class="order-row">
+									<td class="order-date-cell">
+										<?= date::get($purchase->get_purchase_date()) ?>
+									</td>
+									<td class="order-items-cell">
+<? 		foreach ($purchase->get_item_list() as $purchase_item) { ?>
+										<img src="<?= $purchase_item->get_product()->get_product_image() . '/c/66/66' ?>"/>
+<? 		} ?>
+									</td>
+									<td class="order-price-cell"><?= $purchase->get_purchase_sum() ?> руб</td>
+									<td class="order-status-cell"><?= $purchase->get_purchase_status_title() ?></td>
+								</tr>
 <? } ?>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>

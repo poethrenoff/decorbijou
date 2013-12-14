@@ -1,9 +1,9 @@
 <?php
 class model_tag extends model
 {
-    const MIN_FONT_SIZE = 10;
+    const MIN_FONT_SIZE = 30;
     
-    const FONT_LEVEL_COUNT = 10;
+    const FONT_LEVEL_COUNT = 30;
     
     // Значение размера шрифта
     protected $font_size = null;

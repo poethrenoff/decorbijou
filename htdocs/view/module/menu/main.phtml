@@ -1,3 +1,5 @@
 <? foreach ($this->get_children() as $menu_item) { ?>
-	<a<? if ( $menu_item->is_selected ) { ?> style="font-weight: bold"<? } ?> href="<?= $menu_item->get_menu_url() ?>"><?= $menu_item->get_menu_title() ?></a>
+						<li>
+							<a href="<?= $menu_item->get_menu_url() ?>"><?= $menu_item->get_menu_title() ?></a>
+						</li>
 <? } ?>

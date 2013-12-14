@@ -1,0 +1,27 @@
+			<div class="list">
+				<div class="list-inner">
+<? foreach ($this->product_list as $product_item) { ?>
+					<div class="goods-in-list">
+						<a class="goods-link" href="<?= $product_item->get_product_url() ?>">
+							<div class="goods-img">
+								<img src="<?= $product_item->get_product_image() . '/c/200/215' ?>"/>
+							</div>
+							<div class="goods-text">
+								<table class="goods-text-table">
+									<tr>
+										<td class="goods-name">
+											<?= $product_item->get_product_title() ?>
+										</td>
+										<td class="goods-price"><?= $product_item->get_product_price() ?> руб</td>
+									</tr>
+								</table>
+							</div>
+						</a>
+					</div>
+<? } ?>
+					<div class="clear"></div>
+<?= $this->pages ?>
+					<div class="clear"></div>
+				</div>
+			</div>
+

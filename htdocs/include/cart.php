@@ -45,6 +45,11 @@ class cart
         }
     }
     
+    public function in_cart($id)
+    {
+        return isset($this->items[$id]);
+    }
+    
     public function delete($id)
     {
         unset($this->items[$id]);

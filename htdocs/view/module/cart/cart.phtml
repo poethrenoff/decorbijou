@@ -1,55 +1,35 @@
-							<div class="block first">
-								<h1><i></i>Корзина</h1>
+			<div class="card">
+				<div class="card-inner">
+					<div class="order-form-cont">
 <? if ($this->cart->get_quantity()) { ?>
-								<div class="b-order">
-									<table style="width: 100%" border="1">
-										<tr>
-											<td class="ac">
-												<b>Товар</b>
-											</td>
-											<td width="50" class="ac">
-												<b>Цена</b>
-											</td>
-											<td width="50" class="ac">
-												<b>Удалить</b>
-											</td>
-										</tr>
+						<h1>Ваш заказ:</h1>
+						<table class="order-form-table">
+							<tr>
+								<th class="goods-name-cell">Товар</th>
+								<th class="order-price-cell">Цена</th>
+								<th>Убрать</th>
+							</tr>
 <? 		foreach ($this->cart->get() as $item) { ?>
 <? 			$product_item = model::factory('product')->get($item->id); ?>
-										<tr>
-											<td>
-												<?= $product_item->get_product_title() ?>
-											</td>
-											<td width="50" class="ar">
-												<?= $product_item->get_product_price() ?>
-											</td>
-											<td width="50" class="ac">
-												<a href="<?= url_for(array('controller' => 'cart', 'action' => 'delete', 'id' => $product_item->get_id())) ?>">
-													Удалить
-												</a>
-											</td>
-										</tr>
+							<tr>
+								<td><?= $product_item->get_product_title() ?></td>
+								<td class="order-price-cell"><?= $product_item->get_product_price() ?></td>
+								<td class="del"> 
+									<a class="del-goods" href="<?= url_for(array('controller' => 'cart', 'action' => 'delete', 'id' => $product_item->get_id())) ?>">
+										<img src="css/img/cross.png"/>
+									</a> 
+								</td>
+							</tr>
 <? 		} ?>
-										<tr>
-											<td class="ar">
-												&nbsp;
-											</td>
-											<td width="50" class="ar">
-												<strong><?= $this->cart->get_sum() ?>
-											</td>
-											<td width="50" class="ar">
-												&nbsp;
-											</td>
-										</tr>
-									</table>
-									<a href="<?= url_for(array('controller' => 'purchase')) ?>">
-										Оформить заказ
-									</a>
-									<a href="<?= url_for(array('controller' => 'cart', 'action' => 'clear')) ?>" onclick="return confirm('Вы уверены, что хотите очистить корзину?')">
-										Очистить корзину
-									</a>
-								</div>
+						</table>
+						<p class="total-price">Стоимость товара: <?= $this->cart->get_sum() ?> руб</p>
+						<div class="btns-cont">
+							<a class="back-to-store" href="javascript:history.back()">Вернуться к покупкам</a>
+							<button class="buy-btn big-btn" onclick="location = '<?= url_for(array('controller' => 'purchase')) ?>'">Оформить заказ</button>
+						</div>
 <? } else { ?>
-								<p style="font-size: 16px;"><b>Ваша корзина пуста.</b></p>
+						<h1>Ваша корзина пуста.</h1>
 <? } ?>
-							</div>
+					</div>
+				</div>
+			</div>
