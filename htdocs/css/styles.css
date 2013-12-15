@@ -15,10 +15,6 @@ body {
 	src: url('fonts/bickhamscr2.ttf');
 }
 @font-face {
-	font-family: Acquest Script;
-	src: url('fonts/acquestscript.ttf');
-}
-@font-face {
 	font-family: Microsoft Bytes;
 	src: url('fonts/msyi.ttf');
 }
@@ -207,13 +203,6 @@ body {
 	width: 600px;
 	margin-left: 150px;
 	color: rgb(56,31,15);
-}
-.banner-text {
-	font-family: Acquest Script;
-	font-size: 50px;
-	margin-top: 50px;
-	line-height: 80px;
-	text-align: right;
 }
 .footer {
 	margin-top: 30px;
@@ -684,4 +673,125 @@ h3 {
 	height: 35px;
 	font-size: 20px;
 	font-family: Calibri Light;
+}
+.order-form {
+	font-family: Calibri Light;
+	width: 700px;
+}
+.total-price-title {
+	font-weight: bold;
+}
+.order-form h1 {
+	font-size: 30px;
+	text-align: left;
+	text-indent: 20px;
+}
+.order-checkboxes {
+	text-align: right;
+}
+.order-form .form-group {
+	margin-bottom: 10px;
+}
+.order-form .total-price {
+	margin-top: 20px;
+	margin-bottom: 70px;
+}
+.order-form input:focus, .order-form select:focus {
+	outline: none;
+	box-shadow: none;
+	border-color: rgb(156,131,115);
+}
+.order-form .form-group label {
+	text-align: left;
+	font-size: 16px;
+	min-width: 250px;
+}
+.order-form .btns-cont {
+	margin-top: 20px;
+}
+.order-form .btns-cont a:hover {
+	text-decoration: underline; 
+	color: rgb(56,31,15);
+}
+input[type=checkbox].css-checkbox {
+	display:none;
+}
+input[type=checkbox].css-checkbox + label.css-label {
+	padding-left:31px;
+	height:26px; 
+	display:inline-block;
+	line-height:26px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:26px;
+	vertical-align:middle;
+	cursor:pointer;
+
+}
+input[type=checkbox].css-checkbox:checked + label.css-label {
+	background-position: 0 -26px;
+}
+input[type=radio].css-checkbox {
+	display:none;
+}
+input[type=radio].css-checkbox + label.css-label {
+	padding-left:31px;
+	height:26px; 
+	display:inline-block;
+	line-height:26px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:26px;
+	vertical-align:middle;
+	cursor:pointer;
+}
+input[type=radio].css-checkbox:checked + label.css-label {
+	background-position: 0 -26px;
+}
+label.css-label {
+	background-image:url(img/checkbox.png);
+	margin-left: 5px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.check-label {
+	display: inline-block;
+}
+.styled-select select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 30px;
+   -webkit-appearance: none;
+   -moz-appearence: none;
+}
+select option:hover {
+	background: rgb(211,193,181);
+}
+.styled-select {
+   width: 240px;
+   height: 30px;
+   overflow: hidden;
+   background: url(img/select_arrow.png) no-repeat right;
+   border: 1px solid #ccc;
+}
+.order-info {
+	line-height: 30px;
+}
+.goods-total {
+	font-size: 16px;
+}
+
+.error {
+    color: #A72012;
+    font-weight: bold;
+    font-size: 16px;
 }
