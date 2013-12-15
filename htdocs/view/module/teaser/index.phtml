@@ -10,8 +10,8 @@
 <? $teaser_index = 0; ?>
 <? foreach ($this->teaser_list as $teaser_item) { ?>
 					<div class="banner<? if (!$teaser_index++) { ?> active<? } ?> item">
-						<div class="banner-content">
-								<!-- <?= $teaser_item->get_teaser_url() ?>; <?= $teaser_item->get_teaser_image() ?>-->
+						<div class="banner-content" style="background-image: url(<?= $teaser_item->get_teaser_image() ?>)">
+							<!-- <?= $teaser_item->get_teaser_url() ?> ?> -->
 						</div>
 					</div>
 <? } ?>
