@@ -24,7 +24,7 @@
 						</table>
 						<p class="total-price">Стоимость товара: <?= $this->cart->get_sum() ?> руб</p>
 						<div class="btns-cont">
-							<a class="back-to-store" href="javascript:history.back()">Вернуться к покупкам</a>
+							<a class="back-to-store" href="/">Вернуться к покупкам</a>
 							<button class="buy-btn big-btn" onclick="location = '<?= url_for(array('controller' => 'purchase')) ?>'">Оформить заказ</button>
 						</div>
 <? } else { ?>

@@ -1,20 +1,28 @@
-Заказ №<?= $this->purchase->get_id() ?><br/><br/>
+<p>Заказ №<?= $this->purchase->get_id() ?></p>
+
+<p>
 <? $item_index = 1; ?>
 <? foreach ($this->purchase->get_item_list() as $purchase_item) { ?>
 <?= $item_index ?>. <?= $purchase_item->get_product()->get_product_title() ?> - <?= $purchase_item->get_product()->get_product_price() ?>р.<br/>
 <? 		$item_index++; ?>
 <? } ?>
-<br/>
+</p>
+
+<p>
 <? if ($this->purchase->get_purchase_luxury()) { ?>
 Элитная упаковка: <?= get_preference('luxury_price') ?> р.<br/>
 <? } ?>
 <? $delivery = model::factory('delivery')->get($this->purchase->get_purchase_delivery()) ?>
-Способ доставки: <?= $delivery->get_delivery_title() ?> - <?= $delivery->get_delivery_price() ?>р.<br/><br/>
-Общая стоимость заказа: <?= $this->purchase->get_purchase_sum() ?> р.<br/><br/>
+Способ доставки: <?= $delivery->get_delivery_title() ?> - <?= $delivery->get_delivery_price() ?>р.
+</p>
 
+<p>Общая стоимость заказа: <?= $this->purchase->get_purchase_sum() ?> р.</p>
+
+<p>
 ФИО: <?= $this->client->get_client_title() ?><br/>
 Email: <?= $this->client->get_client_email() ?><br/>
 Телефон: <?= $this->purchase->get_purchase_phone() ?><br/>
 Адрес: <?= $this->purchase->get_purchase_address() ?><br/>
 Дата и время доставки: <?= $this->purchase->get_purchase_request() ?><br/>
-Комментарий: <?= $this->purchase->get_purchase_comment() ?><br/>
+Комментарий: <?= $this->purchase->get_purchase_comment() ?>
+</p>

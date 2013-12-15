@@ -6,7 +6,9 @@
 				function buyItem(id){
 					$.get('/cart/add/' + id + '/',function (response){
 						$('#cart').html(response);
-						$('.buy-btn').text('в корзине');
+						$('.buy-btn').text('в корзине').click(function(){
+							location = '/cart';
+						});
 					});
 				}
 			</script>
@@ -16,13 +18,19 @@
 						<div class="card-photo-cont">
 							<img id="zoom" src="<?= $this->get_product_image() . '/c/310/280' ?>" data-zoom-image="<?= $this->get_product_image() ?>"/>
 						</div>
-						<div class="social float-right">
-							<div class="clear social-header">Поделиться
-							</div>
-							<a class="social-one float-left fb" href=""></a>
-							<a class="social-one float-left tw" href=""></a>
-							<a class="social-one float-left vk" href=""></a>
-							<a class="social-one float-left ok" href=""></a>
+						<div class="social float-left">
+							<div class="clear social-header">Поделиться</div>
+							<script type="text/javascript">(function() {
+								if (window.pluso)if (typeof window.pluso.start == "function") return;
+								if (window.ifpluso==undefined) { window.ifpluso = 1;
+									var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+									s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+									s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+									var h=d[g]('body')[0];
+									h.appendChild(s);
+								}})();
+							</script>
+							<div class="pluso" data-background="transparent" data-options="big,square,line,horizontal,nocounter,theme=01" data-services="vkontakte,odnoklassniki,facebook,twitter"></div>
 						</div>
 					</div>
 					<div class="card-right float-right">

@@ -141,14 +141,14 @@ class metadata
                 'purchase_comment' => array('title' => 'Комментарий', 'type' => 'text'),
                 'purchase_delivery' => array('title' => 'Способ доставки', 'type' => 'table', 'table' => 'delivery', 'errors' => 'require'),
                 'purchase_luxury' => array('title' => 'Элитная упаковка', 'type' => 'boolean'),
-                'purchase_date' => array('title' => 'Дата заказа', 'type' => 'datetime', 'show' => 1, 'sort' => 'desc', 'errors' => 'require'),
-                'purchase_sum' => array('title' => 'Сумма заказа', 'type' => 'float', 'show' => 1, 'errors' => 'require', 'no_edit' => 1),
+                'purchase_date' => array('title' => 'Дата заказа', 'type' => 'datetime', 'show' => 1, 'sort' => 'desc', 'errors' => 'require', 'no_edit' => 1),
+                'purchase_sum' => array('title' => 'Сумма заказа', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
                 'purchase_status' => array('title' => 'Статус заказа', 'type' => 'select', 'filter' => 1, 'values' => array(
                         array('value' => '1', 'title' => 'Новый'),
                         array('value' => '2', 'title' => 'Обработан'),
                         array('value' => '3', 'title' => 'В доставке'),
                         array('value' => '4', 'title' => 'Выполнен'),
-                        array('value' => '5', 'title' => 'Отменен')), 'show' => 1, 'errors' => 'require', 'no_edit' => 1),
+                        array('value' => '5', 'title' => 'Отменен')), 'show' => 1, 'errors' => 'require'),
             ),
             'links' => array(
                 'purchase_item' => array('table' => 'purchase_item', 'field' => 'item_purchase', 'ondelete' => 'cascade'),
