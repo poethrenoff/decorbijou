@@ -132,6 +132,7 @@ class metadata
         'purchase' => array(
             'title' => 'Заказы',
             'no_add' => true,
+            'no_delete' => true,
             'fields' => array(
                 'purchase_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'purchase_client' => array('title' => 'Пользователь', 'type' => 'table', 'table' => 'client', 'main' => 1, 'errors' => 'require'),
