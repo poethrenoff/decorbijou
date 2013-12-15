@@ -48,6 +48,11 @@ class module_product extends module
         
         $this->view->assign($product);
         $this->view->assign('cart', cart::factory());
+        
+        $this->output['meta_title'] = $product->get_product_title();
+        $this->output['meta_keywords'] = $product->get_product_title();
+        $this->output['meta_description'] = $product->get_product_title();
+        
         $this->content = $this->view->fetch('module/product/item');
     }
     
