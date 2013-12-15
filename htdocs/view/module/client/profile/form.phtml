@@ -1,39 +1,63 @@
-<h3>Личные данные</h3>
-<form action="<?= self_url() ?>" method="post">
-	<p>
-		Имя
-		<input type="text" name="client_title" value="<?= $this->escape($this->from_request('client_title', $this->client->get_client_title())) ?>" />
+			<div class="cabinet">
+				<div class="cabinet-left float-left">
+					<ul class="cabinet-menu">
+						<li class="cabinet-menu-link"><a href="<?= url_for(array('controller' => 'client/purchase')) ?>">Ваши заказы</a></li>
+						<li class="cabinet-menu-link"><a href="<?= url_for(array('controller' => 'client/profile')) ?>">Регистрационная информация</a></li>
+					</ul>
+				</div>
+				<div class="cabinet-right float-left">
+					<h1>Регистрационная информация</h1>
+					<div class="order-form" style="font-style: italic;">
+						<form class="form-horizontal" action="<?= self_url() ?>" method="post">
+							<div class="form-group">
+								<label for="contact" class="control-label">Имя<span class="require">*</span>:</label>
+								<div class="col-sm-10">
+									<input id="client_title" type="text" value="<?= $this->escape($this->from_request('client_title', $this->client->get_client_title())) ?>" name="client_title" />
+								</div>
 <? if ($this->error['client_title']) { ?>
-		<span class="error"><?= $this->error['client_title'] ?></span>
+								<span class="error"><?= $this->error['client_title'] ?></span>
 <? } ?>
-	</p>
-	<p>
-		E-mail
-		<input type="text" name="client_email" value="<?= $this->escape($this->from_request('client_email', $this->client->get_client_email())) ?>" />
+							</div>
+							<div class="form-group">
+								<label for="contact" class="control-label">E-mail<span class="require">*</span>:</label>
+								<div class="col-sm-10">
+									<input id="client_email" type="text" value="<?= $this->escape($this->from_request('client_email', $this->client->get_client_email())) ?>" name="client_email" />
+								</div>
 <? if ($this->error['client_email']) { ?>
-		<span class="error"><?= $this->error['client_email'] ?></span>
+								<span class="error"><?= $this->error['client_email'] ?></span>
 <? } ?>
-	</p>
-	<p>
-		Старый пароль
-		<input type="password" name="client_password_old" value="" />
+							</div>
+							<div class="form-group">
+								<label for="contact" class="control-label">Старый пароль</label>
+								<div class="col-sm-10">
+									<input id="client_password_old" type="password" value="" name="client_password_old" />
+								</div>
 <? if ($this->error['client_password_old']) { ?>
-		<span class="error"><?= $this->error['client_password_old'] ?></span>
+								<span class="error"><?= $this->error['client_password_old'] ?></span>
 <? } ?>
-	</p>
-	<p>
-		Новый пароль
-		<input type="password" name="client_password" value="" />
+							</div>
+							<div class="form-group">
+								<label for="contact" class="control-label">Новый пароль</label>
+								<div class="col-sm-10">
+									<input id="client_password" type="password" value="" name="client_password" />
+								</div>
 <? if ($this->error['client_password']) { ?>
-		<span class="error"><?= $this->error['client_password'] ?></span>
+								<span class="error"><?= $this->error['client_password'] ?></span>
 <? } ?>
-	</p>
-	<p>
-		Подтверждение
-			<input type="password" name="client_password_confirm" value="" />
+							</div>
+							<div class="form-group">
+								<label for="contact" class="control-label">Подтверждение</label>
+								<div class="col-sm-10">
+									<input id="client_password_confirm" type="password" value="" name="client_password_confirm" />
+								</div>
 <? if ($this->error['client_password_confirm']) { ?>
-		<span class="error"><?= $this->error['client_password_confirm'] ?></span>
+								<span class="error"><?= $this->error['client_password_confirm'] ?></span>
 <? } ?>
-	</p>
-	<input type="submit" value="Сохранить" />
-</form>
+							</div>
+							<div class="btns-cont">
+								<button class="buy-btn big-btn">Сохранить</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>

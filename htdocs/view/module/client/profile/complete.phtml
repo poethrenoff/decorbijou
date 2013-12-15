@@ -1,2 +1,11 @@
-<h3>Личные данные</h3>
-<?= module_text::get_by_tag('profile_message') ?> 
+			<div class="cabinet">
+				<div class="cabinet-left float-left">
+					<ul class="cabinet-menu">
+						<li class="cabinet-menu-link"><a href="<?= url_for(array('controller' => 'client/purchase')) ?>">Ваши заказы</a></li>
+						<li class="cabinet-menu-link"><a href="<?= url_for(array('controller' => 'client/profile')) ?>">Регистрационная информация</a></li>
+					</ul>
+				</div>
+				<div class="cabinet-right float-left">
+					<h1><?= module_text::get_by_tag('profile_message') ?></h1>
+				</div>
+			</div>

@@ -1,24 +1,40 @@
-<h3>Авторизация</h3>
-<form action="<?= self_url() ?>" method="post">
-	<p>
-		E-mail
-		<input type="text" name="client_email" value="<?= $this->escape($this->from_request('client_email')) ?>" />
+			<div class="card">
+				<div class="card-inner">
+					<div class="order-form-cont order-form">
+						<h1>Авторизация</h1>
+						<form class="form-horizontal" action="<?= self_url() ?>" method="post">
+							<div class="form-group">
+								<label for="contact" class="control-label">E-mail<span class="require">*</span>:</label>
+								<div class="col-sm-10">
+									<input id="client_email" type="text" value="<?= $this->escape($this->from_request('client_email')) ?>" name="client_email" />
+								</div>
 <? if ($this->error['client_email']) { ?>
-		<span class="error"><?= $this->error['client_email'] ?></span>
+								<span class="error"><?= $this->error['client_email'] ?></span>
 <? } ?>
-	</p>
-	<p>
-		Пароль
-		<input type="password" name="client_password" value="" />
+							</div>
+							<div class="form-group">
+								<label for="contact" class="control-label">Пароль<span class="require">*</span>:</label>
+								<div class="col-sm-10">
+									<input id="client_password" type="password" value="<?= $this->escape($this->from_request('client_password')) ?>" name="client_password" />
+								</div>
 <? if ($this->error['client_password']) { ?>
-		<span class="error"><?= $this->error['client_password'] ?></span>
+								<span class="error"><?= $this->error['client_password'] ?></span>
 <? } ?>
-	</p>
-	<p>
-		Запомнить меня
-		<input type="checkbox" name="client_remember" value="on"<? if ($this->in_request('client_remember')) { ?> checked="checked"<? } ?>/>
-	</p>
-	<input type="submit" value="Войти" />
-</form>
-<a href="<?= url_for(array('controller' => 'client/registration')) ?>">Регистрация</a>
-<a href="<?= url_for(array('controller' => 'client/recovery')) ?>">Забыли пароль?</a>
+							</div>
+							<div class="order-checkboxes">
+								<div>
+									<label class="check-label"> Запомнить меня
+									<input class="css-checkbox" type="checkbox" value="on" name="client_remember" id="remember" <? if ($this->in_request('client_remember')) { ?> checked="checked"<? } ?> />
+										<label class="css-label" for="remember"></label>
+									</label>
+								</div>
+							</div>
+							<div class="btns-cont">
+								<button class="buy-btn big-btn">Войти</button>
+							</div>
+						</form>
+						<a class="back-to-store" href="<?= url_for(array('controller' => 'client/registration')) ?>">Регистрация</a>
+						<a class="back-to-store" href="<?= url_for(array('controller' => 'client/recovery')) ?>">Забыли пароль?</a>
+					</div>
+				</div>
+			</div>

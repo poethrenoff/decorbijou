@@ -9,8 +9,7 @@ class module_client extends module
     public function action_index()
     {
         if (self::is_auth()) {
-            $this->view->assign('client', self::get_info());
-            $this->content = $this->view->fetch('module/client/index');
+            redirect_to(array('controller' => 'client/purchase'));
         } else {
             $error = !empty($_POST) ? $this->auth_from_request() : array();
             
@@ -20,7 +19,7 @@ class module_client extends module
     }
     
     /**
-     * Регистрайция
+     * Регистрация
      */
     protected function action_registration()
     {
