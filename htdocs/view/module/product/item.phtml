@@ -42,7 +42,7 @@
 						<p class="card-categories">
 <? 		$tag_index = 0; $tag_count = count($tag_list); ?>
 <? 		foreach ($tag_list as $tag_item) { ?>
-							<a class="card-cat-link" href="<?= $tag_item->get_tag_url() ?>"><?= $tag_item->get_tag_title() ?></a><? if (++$tag_index < $tag_count - 1) { ?>, <? } ?>
+							<a class="card-cat-link" href="<?= $tag_item->get_tag_url() ?>"><?= $tag_item->get_tag_title() ?></a><? if ($tag_index++ < $tag_count - 1) { ?>, <? } ?>
 <? 		} ?>
 						</p>
 <? } ?>
