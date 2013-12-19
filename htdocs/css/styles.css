@@ -1,30 +1,42 @@
 html, body {
 	width: 100%;
 	height: 100%;
-	font-family: Calibri;
+	font-family: 'Calibri', 'Calibri2';
 }
 body {
 	overflow-x: hidden;
 }
 @font-face {
-	font-family: Bickham Script Three;
-	src: url('fonts/Bickham Script Three.ttf');
-}
-@font-face {
-	font-family: Bickham Cyr Script;
+	font-family: 'Bickham Cyr Script';
 	src: url('fonts/bickhamscr2.ttf');
 }
 @font-face {
-	font-family: Microsoft Bytes;
+    font-family: 'Bickham Cyr Script2';
+    src: url('fonts/bickhamscr2-webfont.eot');
+}
+@font-face {
+	font-family: 'Microsoft Bytes';
 	src: url('fonts/msyi.ttf');
 }
 @font-face {
-	font-family: Calibri Light;
+    font-family: 'Microsoft Bytes2';
+    src: url('fonts/msyi-webfont.eot');
+}
+@font-face {
+	font-family: 'Calibri Light';
 	src: url('fonts/calibri light.ttf');
 }
 @font-face {
-	font-family: Calibri;
+    font-family: 'Calibri Light2';
+    src: url('fonts/calibri_light-webfont.eot');
+}
+@font-face {
+	font-family: 'Calibri';
 	src: url('fonts/calibri.ttf');
+}
+@font-face {
+    font-family: 'Calibri2';
+    src: url('fonts/calibri-webfont.eot');
 }
 .float-left {
 	float: left;
@@ -53,16 +65,13 @@ body {
 	text-decoration: none;
 }
 .site-header {
-	font-family: Bickham Script Three;
-	font-size: 50px;
+	width: 263px;
+	height: 92px;
 	display: inline-block;
 	position: relative;
-    top: 75px;
-	left: 20px;
-	height: 30px;
-	margin: 0;
-	line-height: 0px;
-	vertical-align: top;
+    top: 12px;
+	left: 26px;
+	background: url('img/site_header.png');
 }
 .header-middle {
     margin: 40px 40px 0 30px;
@@ -90,23 +99,16 @@ body {
 	font-size: 18px;
 }
 .header-phones {
-	position: absolute;
-	top: 30px;
+	position: relative;
+	top: 35px;
 	right: 50px;
-	/*margin-top: 10px;*/
-	/*line-height: 20px;*/
 }
 .first-phone, .second-phone {
 	font-size: 60px;
 	display: block;
-	font-family: Bickham Cyr Script;
+	font-family: 'Bickham Cyr Script', 'Bickham Cyr Script2';
 	vertical-align: bottom;
 	line-height: 10px;
-	/*margin-right: 100px;*/
-	/*height: 10px;*/
-}
-.first-phone {
-	/*margin-top: 40px;*/
 }
 .header-right-outer {
 	background-image: url('img/header_bg2.png');
@@ -114,15 +116,12 @@ body {
 	width: 230px;
 	height: 110px;
 }
-.header-right {
-	/*padding-right: 30px;*/
-}
 .header-right a:hover {
 	text-decoration: underline;
 }
 .top-left {
 	position: relative;
-	top: 10px;
+	top: -33px;
 	right: 30px;
 	padding-bottom: 10px;
 	font-size: 13px;
@@ -143,6 +142,7 @@ body {
 .menu {
 	border-top: 1px solid rgb(63,45,35);
 	height: 320px;
+	background-color: rgb(168,152,142);
 	background: -moz-linear-gradient(top, rgb(109,87,74) 0%, rgb(148,132,122) 60%, rgb(222,217,214) 100%);
     background: -webkit-linear-gradient(top, rgb(109,87,74) 0%, rgb(148,132,122) 60%, rgb(222,217,214) 100%);
     background: -o-linear-gradient(top, rgb(109,87,74) 0%, rgb(148,132,122) 60%, rgb(222,217,214) 100%);
@@ -161,6 +161,7 @@ body {
 }
 .cat-text {
 	font-size: 22px;
+	line-height: 25px;
 	text-transform: uppercase;
 	color: rgb(30,21,15);
 	text-indent: 20px;
@@ -187,6 +188,7 @@ body {
 .banner {
 	margin-top: 30px;
 	height: 476px;
+	background-color: rgb(241,241,241);
 	background: -moz-linear-gradient(27deg, rgb(140,172,163) 0%, rgb(241,241,241) 20%);
     background: -webkit-linear-gradient(27deg, rgb(140,172,163) 0%, rgb(241,241,241) 20%);
     background: -o-linear-gradient(27deg, rgb(140,172,163) 0%, rgb(241,241,241) 20%);
@@ -229,7 +231,6 @@ body {
 	display: inline-block;
 	position: relative;
 	line-height: 30px;
-	/*vertical-align: top;*/
 }
 .links-pack a:hover {
 	color: rgb(142,128,119);
@@ -339,7 +340,7 @@ body {
 }
 .copyright {
 	width: 165px;
-	font-family: Microsoft Bytes;
+	font-family: 'Microsoft Bytes', 'Microsoft Bytes2';
 	font-size: 16px;
 	color: rgb(123,120,118);
 	position: relative;
@@ -353,6 +354,7 @@ body {
 															/*------ list -------*/
 
 .list {
+	background-color: rgb(222,217,214);
 	background: -moz-linear-gradient(top, rgb(129,107,94) 0%, rgb(222,217,214) 20%);
     background: -webkit-linear-gradient(top, rgb(129,107,94) 0%, rgb(222,217,214) 20%);
     background: -o-linear-gradient(top, rgb(129,107,94) 0%, rgb(222,217,214) 20%);
@@ -429,9 +431,11 @@ body {
 }
 													/*-------- text --------*/
 .text {
-	height: 458px;
+	min-height: 400px;
+	background-color: rgb(252,252,252);
 	background: url('img/text_bg.png');
 	background-repeat: no-repeat;
+	padding-bottom: 40px;
 	color: rgb(2,0,0);
 	margin-top: 30px;
 }
@@ -449,10 +453,11 @@ h3 {
 	list-style-type: circle;
 }
 .text-left {
-	width: 500px;
+	width: 900px;
 	margin-left: 200px;
 }
 .text-right {
+	display: none;
 	margin-top: 40px;
 	padding-left: 20px;
 }
@@ -491,6 +496,7 @@ h3 {
 	min-height: 600px;
 	height: 100%;
 	width: 800px;
+	background-color: rgb(254,254,254);
 	background: -moz-linear-gradient(top, rgb(241,239,238) 0%, rgb(254,254,254) 90%);
     background: -webkit-linear-gradient(top, rgb(241,239,238) 0%, rgb(254,254,254) 90%);
     background: -o-linear-gradient(top, rgb(241,239,238) 0%, rgb(254,254,254) 90%);
@@ -523,6 +529,7 @@ h3 {
 														/*---------- card ---------*/
 .card {
 	margin-top: 30px;
+	background-color: rgb(221,221,221);
 	background: -moz-linear-gradient(top, rgb(197,189,184) 0%, rgb(255,255,255) 90%);
     background: -webkit-linear-gradient(top, rgb(197,189,184) 0%, rgb(255,255,255) 90%);
     background: -o-linear-gradient(top, rgb(197,189,184) 0%, rgb(255,255,255) 90%);
@@ -568,12 +575,14 @@ h3 {
 	cursor: pointer;
 	border-radius: 3px;
 	border: 1px solid rgb(56,31,15);
+	background-color: rgb(196,181,172);
 	background: -moz-linear-gradient(top, rgb(211,196,188) 0%, rgb(196,181,172) 50%, rgb(182,167,158) 100%);
     background: -webkit-linear-gradient(top, rgb(211,196,188) 0%, rgb(196,181,172) 50%, rgb(182,167,158) 100%);
     background: -o-linear-gradient(top, rgb(211,196,188) 0%, rgb(196,181,172) 50%, rgb(182,167,158) 100%);
     background: linear-gradient(top, rgb(211,196,188) 0%, rgb(196,181,172) 50%, rgb(182,167,158) 100%);
 }
 .buy-btn:hover {
+	background-color: rgb(216,201,192);
 	background: -moz-linear-gradient(top, rgb(231,216,208) 0%, rgb(216,201,192) 50%, rgb(202,187,178) 100%);
     background: -webkit-linear-gradient(top, rgb(231,216,208) 0%, rgb(216,201,192) 50%, rgb(202,187,178) 100%);
     background: -o-linear-gradient(top, rgb(231,216,208) 0%, rgb(216,201,192) 50%, rgb(202,187,178) 100%);
@@ -611,7 +620,7 @@ h3 {
 	margin-left: 240px;
 	min-height: 500px;
 	font-size: 22px;
-	font-family: Calibri Light;
+	font-family: 'Calibri Light', 'Calibri Light2';
 }
 .order-form-cont h1 {
 	text-align: center;
@@ -671,10 +680,10 @@ h3 {
 	width: 200px;
 	height: 35px;
 	font-size: 20px;
-	font-family: Calibri Light;
+	font-family: 'Calibri Light', 'Calibri Light2';
 }
 .order-form {
-	font-family: Calibri Light;
+	font-family: 'Calibri Light', 'Calibri Light2';
 	width: 700px;
 }
 .total-price-title {
