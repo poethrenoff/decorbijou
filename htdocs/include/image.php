@@ -13,6 +13,7 @@ class image {
     public $x_axis                  = '';
     public $y_axis                  = '';
     public $crop_align              = '';
+	public $watermark_image         = '';
 
     private $orig_width             = '';
     private $orig_height            = '';
@@ -29,7 +30,7 @@ class image {
     public static function process($action = 'resize', $params = array()) {
         $obj = new image($params);
         
-        if (in_array($action, array('resize', 'crop', 'cut'))) {
+        if (in_array($action, array('resize', 'crop', 'cut', 'watermark'))) {
             $obj->$action();
         }
         
@@ -287,7 +288,55 @@ class image {
         imagedestroy($source_resource);
         imagedestroy($dest_resource);
     }
-    
+
+    /**
+     * Водяной знак
+     * 
+     * @return  void
+     */
+    private function watermark() {
+        /*
+         * Собираем информацию о водяном знаке
+         */
+        $watermark_image_info = @getimagesize($this->watermark_image);
+        
+        if ($watermark_image_info === false) {
+            throw new AlarmException('Исходный файл водяного знака не является изображением');
+        }
+        
+        list( $watermark_width, $watermark_height, $watermark_type, $watermark_attr ) = $watermark_image_info;
+		
+        switch ($watermark_type) {
+            case 1:
+                $watermark_resource = @imagecreatefromgif($this->watermark_image); break;
+            case 2:
+                $watermark_resource = @imagecreatefromjpeg($this->watermark_image); break;
+            case 3:
+                $watermark_resource = @imagecreatefrompng($this->watermark_image); break;
+            default:
+                throw new AlarmException('Не поддерживаемый тип изображения водяного знака ');
+        }
+        
+        if ($watermark_resource === false) { 
+            throw new AlarmException('Не удалось открыть изображение водяного знака ');
+        }
+		
+        $source_resource = $this->create();
+		
+		$nwidth = $this->orig_width / 2;
+		$nheight = $watermark_height * $nwidth / $watermark_width;
+		
+		$axis_x = ( $this->orig_width - $nwidth ) / 2;
+		$axis_y = ( $this->orig_height - $nheight ) / 2;
+		
+		imagecopyresampled($source_resource, $watermark_resource, $axis_x, $axis_y, 0, 0, $nwidth, $nheight, $watermark_width, $watermark_height);
+		
+        $this->save($source_resource);
+        
+        imagedestroy($source_resource);
+        imagedestroy($watermark_resource);
+    }
+
     /**
      * Абсолютный путь к преобразованному файлу
      *
