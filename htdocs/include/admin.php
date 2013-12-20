@@ -158,7 +158,7 @@ abstract class admin extends object
 			select * from object where object_active = 1 and
 				object_id in ( ' . array_make_in( array_keys( self::$object_list ) ) . ' )
 			order by object_order' );
-		$object_tree = admin::factory( 'object' )->get_tree($object_list);
+		$object_tree = admin::factory('object', false)->get_tree($object_list);
 		
 		foreach ( $object_tree as $object_index => $object_item )
 		{
