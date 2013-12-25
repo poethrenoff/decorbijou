@@ -204,7 +204,7 @@ function not_found()
 {
 	header( 'HTTP/1.0 404 Not Found' );
 	
-	print block( '404' );
+	print file_get_contents('http://' . $_SERVER['HTTP_HOST'] . '/404' );
 	
 	exit;
 }
