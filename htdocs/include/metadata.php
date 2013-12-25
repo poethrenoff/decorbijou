@@ -178,7 +178,7 @@ class metadata
             'fields' => array(
                 'delivery_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'delivery_title' => array( 'title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
-                'delivery_comment' => array( 'title' => 'Комментарий', 'type' => 'text', 'editor' => 1, 'errors' => 'require' ),
+//              'delivery_comment' => array( 'title' => 'Комментарий', 'type' => 'text', 'editor' => 1, 'errors' => 'require' ),
                 'delivery_price' => array('title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
                 'delivery_active' => array('title' => 'Активный', 'type' => 'active'),
             )
