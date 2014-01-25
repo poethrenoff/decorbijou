@@ -11,9 +11,8 @@
 </p>
 
 <p>
-<? if ($this->purchase->get_purchase_luxury()) { ?>
-Элитная упаковка: <?= get_preference('luxury_price') ?> р.<br/>
-<? } ?>
+<? $package = model::factory('package')->get($this->purchase->get_purchase_package()) ?>
+Вид упаковки: <?= $package->get_package_title() ?> - <?= $package->get_package_price() ?>р.<br/>
 <? $delivery = model::factory('delivery')->get($this->purchase->get_purchase_delivery()) ?>
 Способ доставки: <?= $delivery->get_delivery_title() ?> - <?= $delivery->get_delivery_price() ?>р.
 </p>

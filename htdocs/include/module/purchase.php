@@ -17,6 +17,11 @@ class module_purchase extends module
     protected $delivery_list = null;
     
     /**
+     * Список видов упаковки
+     */
+    protected $package_list = null;
+    
+    /**
      * Оформление заказа
      */
     protected function action_index()
@@ -24,6 +29,10 @@ class module_purchase extends module
         $this->delivery_list = model::factory('delivery')
             ->get_list(array('delivery_active' => 1), array('delivery_price' => 'asc'));
         $this->view->assign('delivery_list', $this->delivery_list);
+        
+        $this->package_list = model::factory('package')
+            ->get_list(array('package_active' => 1), array('package_price' => 'asc'));
+        $this->view->assign('package_list', $this->package_list);
         
         $this->cart = cart::factory();
         
@@ -49,7 +58,7 @@ class module_purchase extends module
         
         $field_list = array(
             'client_title', 'client_email', 'purchase_phone', 'purchase_address',
-            'purchase_request', 'purchase_comment', 'purchase_delivery', 'purchase_luxury');
+            'purchase_request', 'purchase_comment', 'purchase_delivery', 'purchase_package');
         foreach ($field_list as $field_name) {
             $$field_name = trim(init_string($field_name));
         }
@@ -85,6 +94,16 @@ class module_purchase extends module
             $error['purchase_delivery'] = 'Не выбран способ доставки';
         }
         
+        $package_selected = false;
+        foreach ($this->package_list as $package) {
+            if ($package->get_id() == $purchase_package) {
+                $package_selected = true; break;
+            }
+        }
+        if (!isset($error['purchase_package']) && !$package_selected) {
+            $error['purchase_package'] = 'Не выбран вид упаковки';
+        }
+        
         if (count($error)) {
             return $error;
         }
@@ -111,8 +130,8 @@ class module_purchase extends module
         }
         
         $delivery = model::factory('delivery')->get($purchase_delivery);
-        $purchase_sum = $this->cart->get_sum() + $delivery->get_delivery_price() +
-            ($purchase_luxury ? get_preference('luxury_price') : 0);
+        $package = model::factory('package')->get($purchase_package);
+        $purchase_sum = $this->cart->get_sum() + $delivery->get_delivery_price() + $package->get_package_price();
         
         // Сохранение заказа
         $purchase = model::factory('purchase')
@@ -122,7 +141,7 @@ class module_purchase extends module
             ->set_purchase_request($purchase_request)
             ->set_purchase_comment($purchase_comment)
             ->set_purchase_delivery($delivery->get_id())
-            ->set_purchase_luxury($purchase_luxury ? 1 : 0)
+            ->set_purchase_package($package->get_id())
             ->set_purchase_date(date::now())
             ->set_purchase_sum($purchase_sum)
             ->set_purchase_status(1)

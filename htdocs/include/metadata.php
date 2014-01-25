@@ -141,7 +141,7 @@ class metadata
                 'purchase_request' => array('title' => 'Дата и время доставки', 'type' => 'string'),
                 'purchase_comment' => array('title' => 'Комментарий', 'type' => 'text'),
                 'purchase_delivery' => array('title' => 'Способ доставки', 'type' => 'table', 'table' => 'delivery', 'errors' => 'require'),
-                'purchase_luxury' => array('title' => 'Элитная упаковка', 'type' => 'boolean'),
+                'purchase_package' => array('title' => 'Вид упаковки', 'type' => 'table', 'table' => 'package', 'errors' => 'require'),
                 'purchase_date' => array('title' => 'Дата заказа', 'type' => 'datetime', 'show' => 1, 'sort' => 'desc', 'errors' => 'require', 'no_edit' => 1),
                 'purchase_sum' => array('title' => 'Сумма заказа', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
                 'purchase_status' => array('title' => 'Статус заказа', 'type' => 'select', 'filter' => 1, 'values' => array(
@@ -178,9 +178,25 @@ class metadata
             'fields' => array(
                 'delivery_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'delivery_title' => array( 'title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
-//              'delivery_comment' => array( 'title' => 'Комментарий', 'type' => 'text', 'editor' => 1, 'errors' => 'require' ),
+                'delivery_comment' => array( 'title' => 'Комментарий', 'type' => 'string' ),
                 'delivery_price' => array('title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
                 'delivery_active' => array('title' => 'Активный', 'type' => 'active'),
+            )
+        ),
+        
+        /**
+         * Таблица "Виды упаковки"
+         */
+        'package' => array(
+            'title' => 'Виды упаковки',
+            'class' => 'package',
+            'fields' => array(
+                'package_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'package_title' => array( 'title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
+                'package_comment' => array( 'title' => 'Комментарий', 'type' => 'string' ),
+                'package_price' => array('title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
+                'package_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'package', 'errors' => 'require' ),
+                'package_active' => array('title' => 'Активный', 'type' => 'active'),
             )
         ),
         

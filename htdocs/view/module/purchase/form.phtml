@@ -2,32 +2,48 @@
 		$delivery_sum = array();
 		foreach ($this->delivery_list as $delivery) {
 			$delivery_sum[$delivery->get_id()] = $delivery->get_delivery_price();
+		}
+		$package_sum = array();
+		foreach ($this->package_list as $package) {
+			$package_sum[$package->get_id()] = $package->get_package_price();
 		} ?>
+			<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox.css"/>
+			<script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js "></script>
 			<script type="text/javascript">
 				var cart_sum = "<?= $this->cart->get_sum() ?>";
-				var luxury_sum = "<?= get_preference('luxury_price') ?>";
+				var package_sum = <?= json_encode($package_sum) ?>;
 				var delivery_sum = <?= json_encode($delivery_sum) ?>;
 				
 				$(function(){
 					var $delivery = $('input[name="purchase_delivery"]');
-					var $luxury = $('input[name="purchase_luxury"]'); 
+					var $package = $('input[name="purchase_package"]');
 					var $cart_sum = $('#cart_sum'); 
 					var $purchase_sum = $('#purchase_sum');
-					var $luxury_sum = $('#luxury_sum');
 					
 					function set_purchase_sum() {
 						var $delivery_checked = $('input[name="purchase_delivery"]:checked');
+						var $package_checked = $('input[name="purchase_package"]:checked');
 						var purchase_sum = parseInt(cart_sum) +
-							($luxury.prop("checked") ? parseInt(luxury_sum) : 0) +
-							($delivery_checked.prop("checked") ? parseInt(delivery_sum[$delivery_checked.attr('id')]) : 0);
+							($package_checked.prop("checked") ? parseInt(package_sum[$package_checked.val()]) : 0) +
+							($delivery_checked.prop("checked") ? parseInt(delivery_sum[$delivery_checked.val()]) : 0);
 						$cart_sum.html(cart_sum);
 						$purchase_sum.html(parseInt(purchase_sum));
-						$luxury_sum.html(parseInt(luxury_sum));
 					}
 					
-					$luxury.change(set_purchase_sum);
+					$package.change(set_purchase_sum);
 					$delivery.change(set_purchase_sum);
 					set_purchase_sum();
+					
+					$('div.order-packages a').fancybox({
+						closeClick : true,
+						openEffect : 'elastic',
+						closeEffect : 'elastic',
+						helpers : {
+							title : {
+								type : 'inside'
+							},
+						}
+					});
 				});
 			</script>
 			<div class="card">
@@ -48,18 +64,31 @@
 						</div>
 						<span class="goods-total">Стоимость товаров: <span id="cart_sum"></span> руб</span>
 						<form class="form-horizontal" action="<?= self_url() ?>" method="post">
-							<div class="order-checkboxes">
+							<div class="order-packages">
+								<h3>Упаковка:</h3>
+<? 		foreach ($this->package_list as $package) { ?>
 								<div>
-									<label class="check-label"> Элитная упаковка (<span id="luxury_sum"></span>):
-									<input class="css-checkbox" type="checkbox" value="on" name="purchase_luxury" id="elite"<? if ($this->in_request('purchase_luxury')) { ?> checked="checked"<? } ?> />
-										<label class="css-label" for="elite"></label>
+									<a title="<?= $package->get_package_comment() ?>" href="<?= $package->get_package_image() ?>">
+										<img src="<?= $package->get_package_image() . '/c/100/100' ?>" />
+									</a>
+									<label class="check-label">
+										<?= $package->get_package_title() ?> (<?= $package->get_package_price() ?>)<br/>
+										<input class="css-checkbox" type="radio" value="<?= $package->get_id() ?>" id="package<?= $package->get_id() ?>" name="purchase_package"<? if ($this->in_request('purchase_package', $package->get_id())) { ?> checked="checked"<? } ?>/>
+										<label class="css-label" for="package<?= $package->get_id() ?>"></label>
 									</label>
 								</div>
+<? 		} ?>
+<? 		if ($this->error['purchase_package']) { ?>
+								<br/>
+								<span class="error"><?= $this->error['purchase_package'] ?></span>
+<? 		} ?>
+							</div>
+							<div class="order-checkboxes">
 								<h3>Доставка:</h3>
 <? 		foreach ($this->delivery_list as $delivery) { ?>
 								<div><label class="check-label">
-								<?= $delivery->get_delivery_title() ?> (<?= $delivery->get_delivery_price() ?>) <input class="css-checkbox" type="radio" value="<?= $delivery->get_id() ?>" id="<?= $delivery->get_id() ?>" name="purchase_delivery"<? if ($this->in_request('purchase_delivery', $delivery->get_id())) { ?> checked="checked"<? } ?>/>
-									<label class="css-label" for="<?= $delivery->get_id() ?>"></label>
+								<?= $delivery->get_delivery_title() ?><? if ($delivery->get_delivery_comment()) { ?> (<?= $delivery->get_delivery_comment() ?>)<? } ?> (<?= $delivery->get_delivery_price() ?>) <input class="css-checkbox" type="radio" value="<?= $delivery->get_id() ?>" id="delivery<?= $delivery->get_id() ?>" name="purchase_delivery"<? if ($this->in_request('purchase_delivery', $delivery->get_id())) { ?> checked="checked"<? } ?>/>
+									<label class="css-label" for="delivery<?= $delivery->get_id() ?>"></label>
 								</label></div>
 <? 		} ?>
 <? 		if ($this->error['purchase_delivery']) { ?>

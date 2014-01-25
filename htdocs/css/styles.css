@@ -694,6 +694,14 @@ h3 {
 	text-align: left;
 	text-indent: 20px;
 }
+.order-packages {
+	text-align: center;
+}
+.order-packages div {
+    width: 160px;
+    vertical-align: top;
+	display: inline-block;
+}
 .order-checkboxes {
 	text-align: right;
 }
