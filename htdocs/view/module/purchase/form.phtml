@@ -73,6 +73,9 @@
 									</a>
 									<label class="check-label">
 										<?= $package->get_package_title() ?> (<?= $package->get_package_price() ?>)<br/>
+<? if ($package->get_package_size()) { ?>
+										<?= $package->get_package_size() ?><br/>
+<? } ?>
 										<input class="css-checkbox" type="radio" value="<?= $package->get_id() ?>" id="package<?= $package->get_id() ?>" name="purchase_package"<? if ($this->in_request('purchase_package', $package->get_id())) { ?> checked="checked"<? } ?>/>
 										<label class="css-label" for="package<?= $package->get_id() ?>"></label>
 									</label>

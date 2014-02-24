@@ -193,6 +193,7 @@ class metadata
             'fields' => array(
                 'package_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'package_title' => array( 'title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
+                'package_size' => array( 'title' => 'Размер', 'type' => 'string' ),
                 'package_comment' => array( 'title' => 'Комментарий', 'type' => 'string' ),
                 'package_price' => array('title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
                 'package_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'package', 'errors' => 'require' ),
