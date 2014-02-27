@@ -1,0 +1,23 @@
+			<div class="text">
+				<div class="text-inner">
+					<div class="text-left float-left">
+						<?= module_text::get_by_tag('delivery') ?> 
+						<div class="order-packages">
+<? 		foreach ($this->package_list as $package) { ?>
+							<div>
+								<a title="<?= $package->get_package_comment() ?>" href="<?= $package->get_package_image() ?>">
+									<img src="<?= $package->get_package_image() . '/c/100/100' ?>" />
+								</a>
+								<label class="check-label">
+									<?= $package->get_package_title() ?> (<?= $package->get_package_price() ?>)<br/>
+<? if ($package->get_package_size()) { ?>
+									<?= $package->get_package_size() ?><br/>
+<? } ?>
+								</label>
+							</div>
+<? 		} ?>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
