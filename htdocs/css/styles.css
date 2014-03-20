@@ -351,6 +351,13 @@ body {
 .ru-copyright {
 	font-size: 12px;
 }
+.counter {
+	width: 165px;
+	position: relative;
+	top: 60px;
+	left: 150px;
+	text-align: right;
+}
 															/*------ list -------*/
 
 .list {
